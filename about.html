@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About &mdash; HEAVEN. Properties</title>
+<meta name="description" content="HEAVEN. Global is a wealth-building ecosystem built on a team trading property since 2012: four divisions covering brokerage, rental management, legal and residency, and lead generation across the UAE, Hungary, Spain and Thailand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=191">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-overlay" id="headerOverlay">
+    <div class="topbar">
+      <div class="header-left">
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-left">
+          <button class="nav-link" id="propertiesBtn" aria-expanded="false"
+                  aria-controls="propertiesPanel" aria-haspopup="true">
+            Properties
+            <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link" href="/news.html">News &amp; Media</a>
+        </nav>
+      </div>
+
+      <a class="logo" href="index.html" aria-label="Heaven Properties – home">
+        <img src="/images/logo.svg" alt="Heaven Properties">
+      </a>
+
+      <div class="nav-right">
+        <a href="#">Sell With Us</a>
+        <a href="#">For Agents</a>
+        <a href="#" class="btn-ghost">Contact us</a>
+      </div>
+    </div>
+
+    <div class="mega-panel" id="propertiesPanel" role="region" aria-label="Properties">
+      <div class="mega-inner">
+        <div class="mega-intro">
+          <h2>Properties</h2>
+          <p>Curated luxury homes across four destinations &mdash; from beachfront towers to lakeside estates.</p>
+          <a href="/properties.html" class="pill">View All</a>
+        </div>
+        <div class="mega-cards">
+          <a href="/properties.html?location=uae" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-dubai.png')"></div>
+            <div class="dest-region">United Arab Emirates</div>
+            <div class="dest-name">Dubai</div>
+            <div class="dest-meta">Waterfront &amp; skyline residences</div>
+          </a>
+          <a href="/properties.html?location=hungary" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-hungary.png')"></div>
+            <div class="dest-region">Budapest &amp; Balaton</div>
+            <div class="dest-name">Hungary</div>
+            <div class="dest-meta">Historic city &amp; lakeside estates</div>
+          </a>
+          <a href="/properties.html?location=spain" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-spain.png')"></div>
+            <div class="dest-region">Costa del Sol &amp; Balearics</div>
+            <div class="dest-name">Spain</div>
+            <div class="dest-meta">Mediterranean villas &amp; fincas</div>
+          </a>
+          <a href="/properties.html?location=thailand" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-thailand.png')"></div>
+            <div class="dest-region">Phuket &amp; Koh Samui</div>
+            <div class="dest-name">Thailand</div>
+            <div class="dest-meta">Tropical beachfront retreats</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </header>
+
+<div class="mm-backdrop" id="mmBackdrop" hidden></div>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mm-top">
+    <button class="mm-close" id="mmClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6 18 18M18 6 6 18"/></svg>
+    </button>
+  </div>
+
+  <a class="mm-cta" href="/index.html#contact">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+    Talk to an advisor
+  </a>
+
+  <nav class="mm-nav" aria-label="Main">
+    <p class="mm-group">Browse</p>
+    <a class="mm-item" href="/properties.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9.5 21v-6h5v6"/></svg>
+      All properties</a>
+    <a class="mm-item" href="/properties.html?location=uae">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Dubai</a>
+    <a class="mm-item" href="/properties.html?location=hungary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Hungary</a>
+    <a class="mm-item" href="/properties.html?location=spain">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Spain</a>
+    <a class="mm-item" href="/properties.html?location=thailand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Thailand</a>
+
+    <p class="mm-group">Company</p>
+    <a class="mm-item" href="/about.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+      About</a>
+    <a class="mm-item" href="/news.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H5a1 1 0 0 1-1-1z"/><path d="M17 8h3v9a2 2 0 0 1-3 1.7"/><path d="M7 9h7M7 13h7"/></svg>
+      News &amp; Media</a>
+
+    <p class="mm-group">Work with us</p>
+    <a class="mm-item" href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5V20H3z"/><path d="M9 20v-5h6v5"/></svg>
+      Sell With Us</a>
+    <a class="mm-item" href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 11h4M19 9v4"/></svg>
+      For Agents</a>
+  </nav>
+
+  <div class="mm-foot">
+    <a href="tel:+971559730473">+971 55 973 0473</a>
+    <a href="mailto:info@heavenproperties.com">info@heavenproperties.com</a>
+  </div>
+</div>
+
+<div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
+
+<main class="about">
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="container page-hero-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/index.html">Home</a><span>/</span>
+        <span class="crumb-current">About</span>
+      </nav>
+      <h1>HEAVEN. Global.</h1>
+      <p class="page-hero-lead">One organisation, four divisions &mdash; built to grow, protect and operate wealth over the long term, by a team that has been in the market since 2012.</p>
+    </div>
+    <!-- ugyanaz a kétrétegű felhősáv, mint a főoldali herónál:
+         sodródó rétegek + a fehérbe futó tömör PNG -->
+    <div class="hero-cloud-drift" aria-hidden="true">
+      <span class="cloud-layer back"></span>
+      <span class="cloud-layer mid"></span>
+      <span class="cloud-layer front"></span>
+    </div>
+    <div class="hero-clouds" aria-hidden="true"></div>
+  </section>
+
+<section class="container motto">
+  <span class="motto-label">Motto</span>
+  <p class="motto-text">Because everybody deserves<br>a piece of Heaven.</p>
+</section>
+
+<section class="container about-divisions" id="divisions">
+    <div class="section-head"><h2 class="section-title">Four divisions, one outlook</h2></div>
+    <p class="section-lead">Brokerage, rentals, administration and lead generation, working as one system.</p>
+    <div class="div-grid">
+      <article class="div-card">
+        <span class="div-eyebrow">International brokerage</span>
+        <h3>HEAVEN. Properties</h3>
+        <p>Off-plan, ready, commercial and plot sales, with coverage of more than 90% of the UAE&rsquo;s leading developers and first-allocation access for clients.</p>
+      </article>
+      <article class="div-card">
+        <span class="div-eyebrow">Rental management</span>
+        <h3>HEAVEN. Livings</h3>
+        <p>End-to-end short-term rental management, covering furnishing, licensing, marketing, guest handling and day-to-day operations.</p>
+      </article>
+      <article class="div-card">
+        <span class="div-eyebrow">Legal and residency</span>
+        <h3>HEAVEN. Consulting</h3>
+        <p>The entire administrative back office in one pair of hands: company formation, bank accounts, Emirates ID, visa processing, Golden Visa, wills and legal representation.</p>
+      </article>
+      <article class="div-card">
+        <span class="div-eyebrow">Lead generation</span>
+        <h3>HEAVEN. Motion</h3>
+        <p>Our in-house lead generation division &mdash; a dedicated system that makes sure the right buyers and investors find us.</p>
+      </article>
+    </div>
+    <div class="services-cta">
+      <a class="btn-solid" href="/properties.html">Browse properties</a>
+      <a class="btn-outline" href="#contact">Talk to an advisor</a>
+    </div>
+  </section>
+
+<section class="stats-band">
+  <div class="stats-bg" aria-hidden="true"></div>
+  <div class="stats-glow" aria-hidden="true"></div>
+
+  <!-- felhősáv felül: ugyanaz a felépítés, csak függőlegesen tükrözve -->
+  <div class="cloud-band cloud-band--top" aria-hidden="true">
+    <div class="cloud-drift">
+      <span class="cloud-layer back"></span>
+      <span class="cloud-layer front"></span>
+    </div>
+    <div class="cloud-solid"></div>
+  </div>
+
+  <div class="cloud-band cloud-band--bottom" aria-hidden="true">
+    <div class="cloud-drift">
+      <span class="cloud-layer back"></span>
+      <span class="cloud-layer front"></span>
+    </div>
+    <div class="cloud-solid"></div>
+  </div>
+
+  <div class="container stats-inner">
+  <div class="stats-head">
+    <span class="stats-lead">In the market since 2012.</span>
+    <h2>A track record, measured in handovers.</h2>
+  </div>
+  <div class="stats-grid">
+    <div class="stat">
+      <span class="stat-label">Delivery</span>
+      <span class="stat-value">1,500<span class="stat-suffix">+</span></span>
+      <span class="stat-desc">property handovers to customers.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Development</span>
+      <span class="stat-value">41,000<span class="stat-suffix">m²</span></span>
+      <span class="stat-desc">residential real estate developed.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Clients</span>
+      <span class="stat-value">3,000<span class="stat-suffix">+</span></span>
+      <span class="stat-desc">satisfied customers.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Transactions</span>
+      <span class="stat-value">273,000<span class="stat-suffix">m²</span></span>
+      <span class="stat-desc">in real estate transactions.</span>
+    </div>
+  </div>
+  <p class="stats-note">Cumulative figures since 2012, across the projects and transactions of our founders and team.</p>
+</div>
+</section>
+
+  <section class="container about-timeline">
+    <div class="section-head"><h2 class="section-title">How we got here</h2></div>
+    <div class="tl-list">
+      <article class="tl-item">
+        <div class="tl-year">2012</div>
+        <div class="tl-body">
+          <span class="tl-eyebrow">The background</span>
+          <h3>Built on finance. Proven in property.</h3>
+          <p>Mikl&oacute;s Rich&aacute;rd Nagy and &Aacute;brah&aacute;m Kov&aacute;cs came to real estate from finance, and have been working in the market since 2012. Every project is assessed the way a portfolio position is assessed: location, build quality, payment structure and long-term value. That method still decides what we put in front of a client.</p>
+        </div>
+      </article>
+      <article class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-body">
+          <span class="tl-eyebrow">The brand</span>
+          <h3>HEAVEN. brings it under one roof.</h3>
+          <p>What had been separate strands of work &mdash; brokerage, rental management, legal and residency &mdash; became one organisation under the HEAVEN. name, so a client deals with one team instead of four.</p>
+        </div>
+      </article>
+      <article class="tl-item">
+        <div class="tl-year">2026</div>
+        <div class="tl-body">
+          <span class="tl-eyebrow">On the international stage</span>
+          <h3>Representing the UAE abroad.</h3>
+          <p>At LPS Shanghai, one of the world&rsquo;s most prestigious luxury property shows, we present UAE investment opportunities to investors from across Asia. As invited experts at Portfolio, Hungary&rsquo;s leading business and finance platform, we also take part in the conferences that shape the market.</p>
+        </div>
+      </article>
+      <article class="tl-item">
+        <div class="tl-year">2027</div>
+        <div class="tl-body">
+          <span class="tl-eyebrow">Next</span>
+          <h3>American capital, UAE opportunities.</h3>
+          <p>An investor event in Miami lays the groundwork for the USA joining the ecosystem: the same brokerage, rental management and administrative back office, for investors who buy across borders and expect one point of contact.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+<section class="container about-locations">
+    <div class="section-head"><h2 class="section-title">Where we operate</h2></div>
+    <p class="section-lead">From our Dubai headquarters to our European base in Budapest, with Spain and Thailand opening in 2026 and the USA joining in 2027.</p>
+    <div class="dest-grid">
+      <article class="dest-card dest-card--static">
+        <div class="dest-swatch swatch" style="background-image:url('/images/country-dubai.png')"></div>
+        
+        <div class="dest-region">United Arab Emirates</div>
+        <div class="dest-name">Dubai</div>
+        <div class="dest-meta">Global headquarters</div>
+        <p class="dest-note">With coverage of more than 90% of developers and deep market knowledge built up over years, we provide direct access to the best investment opportunities.</p>
+        <a class="dest-cta" href="/properties.html?location=uae">View 14 properties</a>
+      </article>
+      <article class="dest-card dest-card--static">
+        <div class="dest-swatch swatch" style="background-image:url('/images/country-hungary.png')"></div>
+        
+        <div class="dest-region">Budapest</div>
+        <div class="dest-name">Hungary</div>
+        <div class="dest-meta">European base</div>
+        <p class="dest-note">From Budapest we connect Central and Western European investors with the world&rsquo;s most attractive property markets.</p>
+        <a class="dest-cta" href="/properties.html?location=hungary">View 5 properties</a>
+      </article>
+      <article class="dest-card dest-card--static">
+        <div class="dest-swatch swatch" style="background-image:url('/images/country-spain.png')"></div>
+        <span class="dest-flag">2026</span>
+        <div class="dest-region">Costa del Sol</div>
+        <div class="dest-name">Spain</div>
+        <div class="dest-meta">European lifestyle &amp; investment</div>
+        <p class="dest-note">Steady capital appreciation, an excellent quality of life and year-round international demand.</p>
+        <a class="dest-cta" href="/properties.html?location=spain">View 6 properties</a>
+      </article>
+      <article class="dest-card dest-card--static">
+        <div class="dest-swatch swatch" style="background-image:url('/images/country-thailand.png')"></div>
+        <span class="dest-flag">2026</span>
+        <div class="dest-region">Phuket &amp; Koh Samui</div>
+        <div class="dest-name">Thailand</div>
+        <div class="dest-meta">Next growth hub</div>
+        <p class="dest-note">One of Southeast Asia&rsquo;s fastest-growing property markets, where HEAVEN. already holds priority partnerships.</p>
+        <a class="dest-cta" href="/properties.html?location=thailand">View 5 properties</a>
+      </article>
+    </div>
+    <address class="about-office">
+      <span class="about-office-label">Global headquarters</span>
+      Office 2405, Al Salam Tower &middot; Al Sufouh 2, Dubai, United Arab Emirates
+    </address>
+  </section>
+
+<section class="container about-team">
+    <div class="section-head"><h2 class="section-title">The team</h2></div>
+    <p class="section-lead">27 people across the UAE and Hungary. Selection is strict and training is continuous: RERA, DLD and escrow certification, and every deal passes a quality-assurance review before it reaches the client.</p>
+
+    <h3 class="team-head">Sales team <span>15</span></h3>
+    <div class="tm-grid">
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/vajvoda-marcell.jpg" alt="Marcell Vajvoda" loading="lazy"></div>
+          <h4 class="tm-name">Marcell Vajvoda</h4><span class="tm-role">Global Sales Manager</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/nyari-marcell.jpg" alt="Marcell Nyari" loading="lazy"></div>
+          <h4 class="tm-name">Marcell Nyari</h4><span class="tm-role">Global Sales Manager</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/ramina-ajaj.jpg" alt="Ramina Ajaj" loading="lazy"></div>
+          <h4 class="tm-name">Ramina Ajaj</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/abas-arabezadeh.jpg" alt="Abas Arabezadeh" loading="lazy"></div>
+          <h4 class="tm-name">Abas Arabezadeh</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/kitti-gazser.jpg" alt="Kitti Gazser" loading="lazy"></div>
+          <h4 class="tm-name">Kitti Gazser</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/marton-vass.jpg" alt="Marton Vass" loading="lazy"></div>
+          <h4 class="tm-name">Marton Vass</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/balazs-basky.jpg" alt="Balazs Basky" loading="lazy"></div>
+          <h4 class="tm-name">Balazs Basky</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/mark-kovacs.jpg" alt="Mark Kovacs" loading="lazy"></div>
+          <h4 class="tm-name">Mark Kovacs</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/laszlo-toth.jpg" alt="Laszlo Toth" loading="lazy"></div>
+          <h4 class="tm-name">Laszlo Toth</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/marton-dudok.jpg" alt="Marton Dudok" loading="lazy"></div>
+          <h4 class="tm-name">Marton Dudok</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/norbert-csontos.jpg" alt="Norbert Csontos" loading="lazy"></div>
+          <h4 class="tm-name">Norbert Csontos</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/robert-prodan.jpg" alt="Robert Prodan" loading="lazy"></div>
+          <h4 class="tm-name">Robert Prodan</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/szabolcs-dombovari.jpg" alt="Szabolcs Dombovari" loading="lazy"></div>
+          <h4 class="tm-name">Szabolcs Dombovari</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/fruzsina-zlatoczky.jpg" alt="Fruzsina Zlatoczky" loading="lazy"></div>
+          <h4 class="tm-name">Fruzsina Zlatoczky</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/zsuzsanna-papp.jpg" alt="Zsuzsanna Papp" loading="lazy"></div>
+          <h4 class="tm-name">Zsuzsanna Papp</h4><span class="tm-role">Real Estate Broker</span>
+        </article>
+    </div>
+
+    <h3 class="team-head team-head--second">Operations &amp; support <span>7</span></h3>
+    <div class="tm-grid">
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/lilla-nagy.jpg" alt="Lilla Nagy" loading="lazy"></div>
+          <h4 class="tm-name">Lilla Nagy</h4><span class="tm-role">Office Coordinator</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/stella-vogyeraczki.jpg" alt="Stella Vogyeraczki" loading="lazy"></div>
+          <h4 class="tm-name">Stella Vogyeraczki</h4><span class="tm-role">Office Coordinator</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/balazs-blazsev.jpg" alt="Balazs Blazsev" loading="lazy"></div>
+          <h4 class="tm-name">Balazs Blazsev</h4><span class="tm-role">Project Manager</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/erika-ramirez.jpg" alt="Erika Ramirez" loading="lazy"></div>
+          <h4 class="tm-name">Erika Ramirez</h4><span class="tm-role">Administrative Assistant</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/lesley-bertulfo.jpg" alt="Lesley Bertulfo" loading="lazy"></div>
+          <h4 class="tm-name">Lesley Bertulfo</h4><span class="tm-role">Finance &amp; Listing Admin</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/szebasztian-ollari.jpg" alt="Szebasztian Ollari" loading="lazy"></div>
+          <h4 class="tm-name">Szebasztian Ollari</h4><span class="tm-role">Web Developer</span>
+        </article>
+        <article class="tm">
+          <div class="tm-photo"><img src="/images/team/peter-jen.jpg" alt="Peter Jen" loading="lazy"></div>
+          <h4 class="tm-name">Peter Jen</h4><span class="tm-role">CRM Developer</span>
+        </article>
+    </div>
+  </section>
+
+  <section class="container about-founders">
+    <div class="section-head"><h2 class="section-title">The founders</h2></div>
+    <p class="section-lead">Finance, applied to property.</p>
+    <div class="founder-grid">
+      <article class="founder">
+        <div class="founder-photo"><img src="/images/team/miklos-nagy.jpg" alt="Mikl&oacute;s Rich&aacute;rd Nagy" loading="lazy"></div>
+        <div class="founder-text">
+          <h3>Mikl&oacute;s Rich&aacute;rd Nagy</h3>
+          <span class="founder-role">Co-Founder &amp; CEO</span>
+          <p>An entrepreneur with a financial background and more than a decade in real estate and investment, working alongside J.P. Morgan, Fidelity, Templeton and BlackRock after years as a premium adviser at Aegon.</p>
+          <p>As CEO of iDOM Group he oversaw the development, construction and sale of 203,000 m&sup2; of property in seven years &mdash; residences, hotels, offices and stadiums.</p>
+        </div>
+      </article>
+      <article class="founder">
+        <div class="founder-photo"><img src="/images/team/abraham-kovacs.jpg" alt="&Aacute;brah&aacute;m Kov&aacute;cs" loading="lazy"></div>
+        <div class="founder-text">
+          <h3>&Aacute;brah&aacute;m Kov&aacute;cs</h3>
+          <span class="founder-role">Co-Founder &amp; CEO</span>
+          <p>Decades of experience across finance, insurance and investment. He led Generali Insurance Co. and its subsidiary Roar Ltd., directing a team of more than 350 people.</p>
+          <p>He has conducted thousands of sales trainings and mentored hundreds of top-tier sales professionals worldwide &mdash; the standard that now shapes how HEAVEN. selects and trains its advisors.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+<section class="container about-standard">
+    <div class="section-head"><h2 class="section-title">The Heaven Standard</h2></div>
+    <p class="section-lead">Five commitments, without exception.</p>
+    <ol class="std-list">
+      <li class="std-item">
+        <span class="std-num">01</span>
+        <div><h3>Answered within 24 hours.</h3><p>Every enquiry receives a personal reply within one working day.</p></div>
+      </li>
+      <li class="std-item">
+        <span class="std-num">02</span>
+        <div><h3>A tailored proposal within 72 hours.</h3><p>A property proposal matched to your goals, budget and timeline, prepared within three days.</p></div>
+      </li>
+      <li class="std-item">
+        <span class="std-num">03</span>
+        <div><h3>One dedicated advisor throughout.</h3><p>A dedicated advisor is assigned for the entire process and stays with your file from first enquiry to handover.</p></div>
+      </li>
+      <li class="std-item">
+        <span class="std-num">04</span>
+        <div><h3>Transparent administration, complete documentation.</h3><p>Verified developer backgrounds, transparent terms and complete paperwork, available to read before you sign.</p></div>
+      </li>
+      <li class="std-item">
+        <span class="std-num">05</span>
+        <div><h3>Support continues after handover.</h3><p>Rentals, resale and management continue under the same organisation once the keys change hands.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <div class="container faq-grid">
+      <div class="faq-intro">
+        <h2>About us, answered.</h2>
+        <p>Four divisions, one ecosystem, and a team in the market since 2012. These are the questions clients ask before they commit.</p>
+        <a class="link-teal" href="#contact">Talk to an advisor &rarr;</a>
+      </div>
+      <div class="faq-list">
+      <details class="faq-item">
+        <summary>
+          Who founded HEAVEN. Properties?
+          <svg class="faq-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="faq-answer">Mikl&oacute;s Rich&aacute;rd Nagy and &Aacute;brah&aacute;m Kov&aacute;cs, both from finance rather than estate agency. They have been working in property since 2012; the HEAVEN. brand brought their divisions under one roof in 2024. That background is why every project is assessed like a portfolio position: location, build quality, payment structure and long-term value.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          Is HEAVEN. Properties a trustworthy agency for UAE property investment?
+          <svg class="faq-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="faq-answer">Every advisor holds RERA, DLD and escrow certification, and every deal passes a quality-assurance review before it reaches you. We work with more than 90% of the UAE&rsquo;s leading developers, and the track record behind that is 1,500+ handovers and 273,000 m&sup2; transacted since 2012.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          Can I buy a UAE property from Europe?
+          <svg class="faq-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="faq-answer">Yes. Our European base in Budapest exists for exactly that, and HEAVEN. Consulting handles the administrative side &mdash; company formation, bank accounts, Emirates ID, visa processing and legal representation &mdash; so you deal with one organisation rather than five.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          What is the Heaven Standard?
+          <svg class="faq-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="faq-answer">Five commitments we hold to without exception: a personal reply within 24 hours, a tailored proposal within 72 hours, one dedicated advisor throughout, transparent administration with complete documentation, and continued support after handover.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          Which companies make up HEAVEN. Global?
+          <svg class="faq-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="faq-answer">Four divisions. HEAVEN. Properties handles brokerage, HEAVEN. Livings runs rental management, HEAVEN. Consulting carries the administrative and legal back office, and HEAVEN. Motion is our in-house lead generation.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          Where is HEAVEN. expanding?
+          <svg class="faq-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="faq-answer">Spain and Thailand open in 2026, joining the UAE and Hungary. The USA follows in 2027, with the groundwork already laid through an investor event in Miami.</div>
+      </details>
+      </div>
+    </div>
+  </section>
+
+<section class="container contact" id="contact">
+  <div class="contact-panel">
+  <div class="contact-grid">
+    <div class="contact-intro">
+      <span class="contact-eyebrow">Free consultation</span>
+      <h2>Start Your Property Journey</h2>
+      <p>Dubai, Hungary, Spain or Thailand &mdash; ready homes or off-plan projects. Whether you're looking to buy, invest, relocate, or earn rental income, get a free consultation with a senior advisor.</p>
+      <ul class="contact-points">
+        <li>Free, no-obligation consultation</li>
+        <li>Local advisors in all four markets</li>
+        <li>We reply within one business day</li>
+      </ul>
+    </div>
+
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="contact-form-head">
+        <h3>Request your consultation</h3>
+        <p>Takes under a minute &mdash; we reply within one business day.</p>
+      </div>
+      <div class="field-row">
+        <label class="field">
+          <span>Name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+      </div>
+      <div class="field-row">
+        <label class="field">
+          <span>Phone</span>
+          <input type="tel" name="phone" autocomplete="tel">
+        </label>
+            <label class="field">
+          <span>I'm interested in</span>
+          <select name="interest" required>
+            <option value="" disabled selected>Select an option</option>
+            <option>Buying Property</option>
+            <option>Investment Opportunities</option>
+            <option>Visa &amp; Relocation</option>
+            <option>Rental Management</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label class="field">
+        <span>Message <em>(optional)</em></span>
+        <textarea name="message" rows="4"></textarea>
+      </label>
+      <label class="checkfield">
+        <input type="checkbox" name="consent" required>
+        <span class="checkbox-box" aria-hidden="true"></span>
+        <span class="checkfield-text">I agree to be contacted about my enquiry and accept the <a href="#">Privacy Policy</a>.</span>
+      </label>
+      <button type="submit" class="btn-solid">Request a free consultation</button>
+      <p class="form-note" id="formNote" role="status"></p>
+    </form>
+  </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="cloud-band cloud-band--top" aria-hidden="true">
+    <div class="cloud-drift">
+      <span class="cloud-layer back"></span>
+      <span class="cloud-layer front"></span>
+    </div>
+    <div class="cloud-solid"></div>
+  </div>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="ic-instagram" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M17.5 6.5h.01"/>
+    </symbol>
+    <symbol id="ic-tiktok" viewBox="0 0 24 24">
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+    </symbol>
+    <symbol id="ic-facebook" viewBox="0 0 24 24">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    </symbol>
+    <symbol id="ic-linkedin" viewBox="0 0 24 24">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5A6 6 0 0 1 16 8z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
+    </symbol>
+    <symbol id="ic-youtube" viewBox="0 0 24 24">
+      <path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+      <path d="m10 15 5-3-5-3z"/>
+    </symbol>
+  </svg>
+
+  <div class="container footer-grid">
+    <div>
+      <h5>Contact</h5>
+      <address class="footer-contact">
+        <span>Downtown Dubai, UAE</span>
+        <a href="tel:+971559730473">+971 55 973 0473</a>
+        <a href="mailto:info@heavenproperties.com">info@heavenproperties.com</a>
+      </address>
+    </div>
+    <div>
+      <h5>Properties</h5>
+      <a href="/properties.html?status=off-plan">Off-Plan Projects</a>
+      <a href="/properties.html?status=ready">Ready Properties</a>
+      <a href="/properties.html?type=commercial">Commercial</a>
+      <a href="/properties.html?type=villa">Villas</a>
+    </div>
+    <div>
+      <h5>Services</h5>
+      <a href="/index.html#services">Visa &amp; Relocation</a>
+      <a href="/index.html#services">Golden Visa</a>
+      <a href="/index.html#services">Short-Term Rentals</a>
+      <a href="/index.html#services">Long-Term Rentals</a>
+      <a href="/index.html#services">Company Formation</a>
+    </div>
+    <div>
+      <h5>Business</h5>
+      <a href="#">All Businesses</a>
+      <a href="#">Sell With Us</a>
+      <a href="#">Partner</a>
+      <a href="#">Linking</a>
+      <a href="#">CRM Integrations</a>
+    </div>
+    <div>
+      <h5>Preferences</h5>
+      <div class="select-fake"><span>English</span><span>&#8964;</span></div>
+      <div class="select-fake"><span>Hungarian forint</span><span>&#8964;</span></div>
+      <div class="select-fake"><span>Square Meter</span><span>&#8964;</span></div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <div class="footer-legal">
+      <span>&copy; 2026 HEAVEN. Properties. All rights reserved.</span>
+      <nav class="footer-legal-links" aria-label="Legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <!-- sütibeállítás művelet, nem oldal – ezért gomb -->
+        <button class="footer-legal-btn" type="button">Cookie Settings</button>
+      </nav>
+    </div>
+    <div class="social-row">
+      <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false"><use href="#ic-instagram"></use></svg></a>
+      <a href="#" aria-label="TikTok"><svg aria-hidden="true" focusable="false"><use href="#ic-tiktok"></use></svg></a>
+      <a href="#" aria-label="Facebook"><svg aria-hidden="true" focusable="false"><use href="#ic-facebook"></use></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg aria-hidden="true" focusable="false"><use href="#ic-linkedin"></use></svg></a>
+      <a href="#" aria-label="YouTube"><svg aria-hidden="true" focusable="false"><use href="#ic-youtube"></use></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js?v=191" defer></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reframing Global Real Estate Advisory &mdash; HEAVEN. Properties</title>
+<meta name="description" content="How an integrated model — advisory, development and consulting under one roof — changes what clients can expect from a property partner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=191">
+</head>
+<body>
+
+<header class="site-header site-header--solid">
+  <div class="header-overlay" id="headerOverlay">
+    <div class="topbar">
+      <div class="header-left">
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-left">
+          <button class="nav-link" id="propertiesBtn" aria-expanded="false"
+                  aria-controls="propertiesPanel" aria-haspopup="true">
+            Properties
+            <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link" href="#">News &amp; Media</a>
+        </nav>
+      </div>
+
+      <a class="logo" href="index.html" aria-label="Heaven Properties – home">
+        <img src="/images/logo.svg" alt="Heaven Properties">
+      </a>
+
+      <div class="nav-right">
+        <a href="#">Sell With Us</a>
+        <a href="#">For Agents</a>
+        <a href="#" class="btn-ghost">Contact us</a>
+      </div>
+    </div>
+
+    <div class="mega-panel" id="propertiesPanel" role="region" aria-label="Properties">
+      <div class="mega-inner">
+        <div class="mega-intro">
+          <h2>Properties</h2>
+          <p>Curated luxury homes across four destinations &mdash; from beachfront towers to lakeside estates.</p>
+          <a href="/properties.html" class="pill">View All</a>
+        </div>
+        <div class="mega-cards">
+          <a href="/properties.html?location=uae" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-dubai.png')"></div>
+            <div class="dest-region">United Arab Emirates</div>
+            <div class="dest-name">Dubai</div>
+            <div class="dest-meta">Waterfront &amp; skyline residences</div>
+          </a>
+          <a href="/properties.html?location=hungary" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-hungary.png')"></div>
+            <div class="dest-region">Budapest &amp; Balaton</div>
+            <div class="dest-name">Hungary</div>
+            <div class="dest-meta">Historic city &amp; lakeside estates</div>
+          </a>
+          <a href="/properties.html?location=spain" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-spain.png')"></div>
+            <div class="dest-region">Costa del Sol &amp; Balearics</div>
+            <div class="dest-name">Spain</div>
+            <div class="dest-meta">Mediterranean villas &amp; fincas</div>
+          </a>
+          <a href="/properties.html?location=thailand" class="dest-card">
+            <div class="dest-swatch swatch" style="background-image:url('/images/country-thailand.png')"></div>
+            <div class="dest-region">Phuket &amp; Koh Samui</div>
+            <div class="dest-name">Thailand</div>
+            <div class="dest-meta">Tropical beachfront retreats</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </header>
+
+<div class="mm-backdrop" id="mmBackdrop" hidden></div>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mm-top">
+    <button class="mm-close" id="mmClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6 18 18M18 6 6 18"/></svg>
+    </button>
+  </div>
+
+  <a class="mm-cta" href="/index.html#contact">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+    Talk to an advisor
+  </a>
+
+  <nav class="mm-nav" aria-label="Main">
+    <p class="mm-group">Browse</p>
+    <a class="mm-item" href="/properties.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9.5 21v-6h5v6"/></svg>
+      All properties</a>
+    <a class="mm-item" href="/properties.html?location=uae">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Dubai</a>
+    <a class="mm-item" href="/properties.html?location=hungary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Hungary</a>
+    <a class="mm-item" href="/properties.html?location=spain">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Spain</a>
+    <a class="mm-item" href="/properties.html?location=thailand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+      Thailand</a>
+
+    <p class="mm-group">Company</p>
+    <a class="mm-item" href="/about.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+      About</a>
+    <a class="mm-item" href="/news.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H5a1 1 0 0 1-1-1z"/><path d="M17 8h3v9a2 2 0 0 1-3 1.7"/><path d="M7 9h7M7 13h7"/></svg>
+      News &amp; Media</a>
+
+    <p class="mm-group">Work with us</p>
+    <a class="mm-item" href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5V20H3z"/><path d="M9 20v-5h6v5"/></svg>
+      Sell With Us</a>
+    <a class="mm-item" href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 11h4M19 9v4"/></svg>
+      For Agents</a>
+  </nav>
+
+  <div class="mm-foot">
+    <a href="tel:+971559730473">+971 55 973 0473</a>
+    <a href="mailto:info@heavenproperties.com">info@heavenproperties.com</a>
+  </div>
+</div>
+
+<div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
+
+<main class="article">
+  <div class="container article-grid">
+    <aside class="article-rail">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/index.html">Home</a><span>/</span>
+        <a href="/news.html">News &amp; Media</a>
+      </nav>
+      <div class="rail-meta">
+        <span class="news-cat">Press</span>
+        <span class="news-date">12 Aug 2026</span>
+        <span class="article-read">6 min read</span>
+      </div>
+      <p class="article-source">Originally published in <strong>CIO Times</strong></p>
+      <div class="article-share">
+        <span>Share</span>
+        <button class="share-btn" id="articleShare" type="button" aria-label="Share this article">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L8 7m4-4 4 4"/><path d="M4 13v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <div class="article-main">
+      <h1>Heaven Properties: Reframing Global Real Estate Advisory Through Data, Technology, and Integrated Expertise</h1>
+      <p class="article-lead">How an integrated model &mdash; advisory, development and consulting under one roof &mdash; changes what clients can expect from a property partner.</p>
+
+      <figure class="article-figure">
+    <img src="/images/news-1.jpg" alt="Heaven Properties featured in CIO Times" loading="eager">
+    <figcaption>The founders on the CIO Times cover feature.</figcaption>
+  </figure>
+
+      <div class="article-body">
+    <p>Buying property in another country rarely fails on the property itself. It fails in the gaps &mdash; between the broker who sold it, the lawyer who never saw the payment plan, the accountant who found out about the purchase afterwards, and the letting agent who inherited a home furnished for the wrong market.</p>
+
+    <h2>One organisation instead of four</h2>
+    <p>The model behind HEAVEN. Global is an attempt to close those gaps by holding the work inside one organisation. Brokerage, rental management, the legal and administrative back office and lead generation each run as their own division, but they answer to the same strategy and the same client file.</p>
+    <p>In practice that means the advisor who assesses a development is looking at the same numbers the rental team will later have to deliver on: expected occupancy, service charges, the realistic net after costs &mdash; not a headline gross yield.</p>
+
+    <blockquote class="article-quote">
+      <p>Wealth management keeps pace with changing conditions. Wealth building stays one step ahead of them.</p>
+    </blockquote>
+
+    <h2>Assessed like a portfolio position</h2>
+    <p>Both founders came to real estate from finance rather than estate agency, and the assessment method reflects it. Every project is measured on location, build quality, payment structure and long-term value before it reaches a client &mdash; the same four questions asked of any position in a portfolio.</p>
+    <p>That filter is why coverage matters more than volume. Working with more than 90% of the UAE&rsquo;s leading developers means the choice is made from the whole market rather than from whatever inventory happens to be available.</p>
+
+    <h2>What the client actually sees</h2>
+    <p>Certification is the floor, not the differentiator: every advisor holds RERA, DLD and escrow certification, and every deal passes a quality-assurance review before it reaches the client. What changes the experience is continuity &mdash; one dedicated advisor from first enquiry through handover, and the same organisation still answering the phone once the keys have changed hands.</p>
+    <p>The next test of the model is geographic. Spain and Thailand joined the UAE and Hungary in 2026, with the USA following in 2027. Each market runs to the same standard, which is a harder promise to keep than it sounds.</p>
+  </div>
+
+      <div class="article-foot">
+        <a class="btn-outline" href="/news.html">&larr; All articles</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="container news-list article-related">
+    <div class="section-head"><h2 class="section-title">Read next</h2></div>
+    <div class="news-grid">
+      <a href="/article.html" class="news-card">
+        <div class="news-thumb swatch" style="background-image:url('/images/blog-dubai-investment.jpg')"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="news-cat">Insight</span><span class="news-date">04 Aug 2026</span></div>
+          <h3>Luxury Seafront Property for the Price of a Budapest Apartment?</h3>
+        </div>
+      </a>
+      <a href="/article.html" class="news-card">
+        <div class="news-thumb swatch" style="background-image:url('/images/blog-branded-residences.jpg')"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="news-cat">Market</span><span class="news-date">28 Jul 2026</span></div>
+          <h3>Branded Residences in Dubai: What the Premium Actually Buys</h3>
+        </div>
+      </a>
+      <a href="/article.html" class="news-card">
+        <div class="news-thumb swatch" style="background-image:url('/images/blog-off-plan-launch.jpg')"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="news-cat">Insight</span><span class="news-date">19 Jul 2026</span></div>
+          <h3>Reading an Off-Plan Payment Plan Before You Sign</h3>
+        </div>
+      </a>
+    </div>
+  </section>
+
+<section class="container contact" id="contact">
+  <div class="contact-panel">
+  <div class="contact-grid">
+    <div class="contact-intro">
+      <span class="contact-eyebrow">Free consultation</span>
+      <h2>Start Your Property Journey</h2>
+      <p>Dubai, Hungary, Spain or Thailand &mdash; ready homes or off-plan projects. Whether you're looking to buy, invest, relocate, or earn rental income, get a free consultation with a senior advisor.</p>
+      <ul class="contact-points">
+        <li>Free, no-obligation consultation</li>
+        <li>Local advisors in all four markets</li>
+        <li>We reply within one business day</li>
+      </ul>
+    </div>
+
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="contact-form-head">
+        <h3>Request your consultation</h3>
+        <p>Takes under a minute &mdash; we reply within one business day.</p>
+      </div>
+      <div class="field-row">
+        <label class="field">
+          <span>Name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+      </div>
+      <div class="field-row">
+        <label class="field">
+          <span>Phone</span>
+          <input type="tel" name="phone" autocomplete="tel">
+        </label>
+            <label class="field">
+          <span>I'm interested in</span>
+          <select name="interest" required>
+            <option value="" disabled selected>Select an option</option>
+            <option>Buying Property</option>
+            <option>Investment Opportunities</option>
+            <option>Visa &amp; Relocation</option>
+            <option>Rental Management</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label class="field">
+        <span>Message <em>(optional)</em></span>
+        <textarea name="message" rows="4"></textarea>
+      </label>
+      <label class="checkfield">
+        <input type="checkbox" name="consent" required>
+        <span class="checkbox-box" aria-hidden="true"></span>
+        <span class="checkfield-text">I agree to be contacted about my enquiry and accept the <a href="#">Privacy Policy</a>.</span>
+      </label>
+      <button type="submit" class="btn-solid">Request a free consultation</button>
+      <p class="form-note" id="formNote" role="status"></p>
+    </form>
+  </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="cloud-band cloud-band--top" aria-hidden="true">
+    <div class="cloud-drift">
+      <span class="cloud-layer back"></span>
+      <span class="cloud-layer front"></span>
+    </div>
+    <div class="cloud-solid"></div>
+  </div>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="ic-instagram" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M17.5 6.5h.01"/>
+    </symbol>
+    <symbol id="ic-tiktok" viewBox="0 0 24 24">
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+    </symbol>
+    <symbol id="ic-facebook" viewBox="0 0 24 24">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    </symbol>
+    <symbol id="ic-linkedin" viewBox="0 0 24 24">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5A6 6 0 0 1 16 8z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
+    </symbol>
+    <symbol id="ic-youtube" viewBox="0 0 24 24">
+      <path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+      <path d="m10 15 5-3-5-3z"/>
+    </symbol>
+  </svg>
+
+  <div class="container footer-grid">
+    <div>
+      <h5>Contact</h5>
+      <address class="footer-contact">
+        <span>Downtown Dubai, UAE</span>
+        <a href="tel:+971559730473">+971 55 973 0473</a>
+        <a href="mailto:info@heavenproperties.com">info@heavenproperties.com</a>
+      </address>
+    </div>
+    <div>
+      <h5>Properties</h5>
+      <a href="/properties.html?status=off-plan">Off-Plan Projects</a>
+      <a href="/properties.html?status=ready">Ready Properties</a>
+      <a href="/properties.html?type=commercial">Commercial</a>
+      <a href="/properties.html?type=villa">Villas</a>
+    </div>
+    <div>
+      <h5>Services</h5>
+      <a href="/index.html#services">Visa &amp; Relocation</a>
+      <a href="/index.html#services">Golden Visa</a>
+      <a href="/index.html#services">Short-Term Rentals</a>
+      <a href="/index.html#services">Long-Term Rentals</a>
+      <a href="/index.html#services">Company Formation</a>
+    </div>
+    <div>
+      <h5>Business</h5>
+      <a href="#">All Businesses</a>
+      <a href="#">Sell With Us</a>
+      <a href="#">Partner</a>
+      <a href="#">Linking</a>
+      <a href="#">CRM Integrations</a>
+    </div>
+    <div>
+      <h5>Preferences</h5>
+      <div class="select-fake"><span>English</span><span>&#8964;</span></div>
+      <div class="select-fake"><span>Hungarian forint</span><span>&#8964;</span></div>
+      <div class="select-fake"><span>Square Meter</span><span>&#8964;</span></div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <div class="footer-legal">
+      <span>&copy; 2026 HEAVEN. Properties. All rights reserved.</span>
+      <nav class="footer-legal-links" aria-label="Legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <!-- sütibeállítás művelet, nem oldal – ezért gomb -->
+        <button class="footer-legal-btn" type="button">Cookie Settings</button>
+      </nav>
+    </div>
+    <div class="social-row">
+      <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false"><use href="#ic-instagram"></use></svg></a>
+      <a href="#" aria-label="TikTok"><svg aria-hidden="true" focusable="false"><use href="#ic-tiktok"></use></svg></a>
+      <a href="#" aria-label="Facebook"><svg aria-hidden="true" focusable="false"><use href="#ic-facebook"></use></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg aria-hidden="true" focusable="false"><use href="#ic-linkedin"></use></svg></a>
+      <a href="#" aria-label="YouTube"><svg aria-hidden="true" focusable="false"><use href="#ic-youtube"></use></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js?v=191" defer></script>
+<script src="assets/article.js?v=191" defer></script>
+</body>
+</html>
