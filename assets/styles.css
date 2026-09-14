@@ -2232,10 +2232,13 @@
   /* Éjszakai dubaji légifotó: a világító torony jobbra-középen, a felirat
      a sötétebb bal oldalon ül, ezért elég egy enyhe bal oldali átmenet. */
   .page-hero--contact .page-hero-bg{
+    /* Tárgyalás dubaji panorámával: a tanácsadó bal oldalt, a felirat
+       alatta ül, ezért a bal oldali fátyol erősebb; jobbra a pár és a
+       Burj Khalifa tiszta marad. */
     background:
-      linear-gradient(100deg, rgba(0,18,25,.72) 0%, rgba(0,18,25,.46) 36%, rgba(0,18,25,.12) 64%, rgba(0,18,25,0) 82%),
-      linear-gradient(180deg, rgba(0,18,25,.42) 0%, rgba(0,18,25,.1) 40%, rgba(0,18,25,.2) 100%),
-      url('/images/hero-6.jpg') center 42% / cover no-repeat;
+      linear-gradient(100deg, rgba(0,18,25,.78) 0%, rgba(0,18,25,.56) 30%, rgba(0,18,25,.18) 58%, rgba(0,18,25,0) 76%),
+      linear-gradient(180deg, rgba(0,18,25,.46) 0%, rgba(0,18,25,.14) 36%, rgba(0,18,25,.12) 60%, rgba(0,18,25,.26) 100%),
+      url('/images/contact-hero.jpg') center 40% / cover no-repeat;
   }
   .contact-card{display:flex; flex-direction:column;}
   .contact-card-num{font-size:12px; font-weight:600; letter-spacing:.14em; color:var(--muted); margin-bottom:14px;}
@@ -2256,10 +2259,29 @@
      szűrővel visszafogott, szinte szürke tónust kap; hoverre színes.
      A bal felső helykártyát az iframe felfelé tolásával takarjuk ki –
      az alsó Google-attribúció látható marad. */
-  .office-list{display:flex; flex-direction:column; gap:clamp(40px, 5vw, 80px);}
+  .office-list{display:flex; flex-direction:column; gap:0;}
   .office-row{
+    position:relative; isolation:isolate;
     display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr);
     gap:clamp(28px, 5vw, 80px); align-items:center;
+    padding-block:clamp(44px, 5vw, 80px);
+  }
+  /* Irodafotó finoman a háttérben: teljes szélességű sáv, a szöveg oldalán
+     szinte fehér fátyollal (olvashatóság), a térkép felé halványabban; a
+     sáv teteje és alja maszkkal a fehérbe olvad, így nincs éles szél. */
+  .office-bg{
+    position:absolute; z-index:-1; top:0; bottom:0;
+    left:50%; width:100vw; margin-left:-50vw;
+    background:var(--office-img) center / cover no-repeat;
+    -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+            mask-image:linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  }
+  .office-bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.86) 36%, rgba(255,255,255,.5) 66%, rgba(255,255,255,.32) 100%);
+  }
+  .office-row--flip .office-bg::after{
+    background:linear-gradient(270deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.86) 36%, rgba(255,255,255,.5) 66%, rgba(255,255,255,.32) 100%);
   }
   .office-row--flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
   .office-row--flip .office-info{order:2;}
@@ -2289,6 +2311,70 @@
 
   .step-list--3{grid-template-columns:repeat(3, minmax(0,1fr));}
 
+  /* ---------- Jogi oldalak (Adatkezelési tájékoztató, Impresszum) ---------- */
+  /* Fotó helyett nyugodt, sötét márkaszínű átmenet: jogi szövegnél a
+     hangulatkép csak elvonná a figyelmet, a fehér fejléc viszont kell. */
+  .page-hero--legal{min-height:clamp(420px, 34vw, 500px);}
+  .page-hero--legal .page-hero-bg{
+    background:
+      radial-gradient(120% 90% at 85% 10%, rgba(0,154,206,.38) 0%, rgba(0,154,206,0) 60%),
+      linear-gradient(125deg, #021820 0%, #05394b 55%, #0a5a76 100%);
+  }
+  .legal-layout{
+    display:grid; grid-template-columns:minmax(0,240px) minmax(0,1fr);
+    gap:clamp(30px, 5vw, 90px); align-items:start;
+  }
+  .legal-toc{position:sticky; top:110px; font-size:14px;}
+  .legal-toc-title{font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+  .legal-toc ol{list-style:none; padding:0; margin:0; border-left:1px solid var(--line);}
+  .legal-toc a{
+    display:block; padding:7px 0 7px 16px; margin-left:-1px; border-left:2px solid transparent;
+    color:var(--muted); line-height:1.4; transition:color .25s ease, border-color .25s ease;
+  }
+  .legal-toc a:hover{color:var(--accent); border-left-color:var(--accent);}
+  .legal-body{max-width:860px;}
+  .legal-body h2{scroll-margin-top:110px;}
+  .legal-body h2:first-child{margin-top:0;}
+  .legal-body a:not(.btn-solid){color:var(--accent); text-decoration:underline; text-underline-offset:3px;}
+  .legal-intro{color:var(--muted);}
+  .legal-list{margin:0 0 22px;}
+  .legal-list li{color:var(--ink);}
+  .legal-date{margin-top:30px; font-size:15px; color:var(--muted);}
+  .legal-facts{
+    margin:0 0 22px; border:1px solid var(--line); border-radius:16px; background:#fff;
+    padding:6px clamp(18px, 2vw, 28px);
+  }
+  .legal-facts > div{
+    display:grid; grid-template-columns:minmax(0,200px) minmax(0,1fr); gap:6px 24px;
+    padding:13px 0; border-bottom:1px solid var(--line);
+  }
+  .legal-facts > div:last-child{border-bottom:0;}
+  .legal-facts dt{font-size:14px; color:var(--muted);}
+  .legal-facts dd{margin:0; font-size:15.5px; font-weight:500; color:var(--ink); overflow-wrap:anywhere;}
+  .legal-table-wrap{overflow-x:auto; margin:0 0 22px; border:1px solid var(--line); border-radius:16px; background:#fff;}
+  .legal-table{width:100%; border-collapse:collapse; font-size:15px; line-height:1.6; min-width:640px;}
+  .legal-table th, .legal-table td{padding:16px 18px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line);}
+  .legal-table tbody tr:last-child th, .legal-table tbody tr:last-child td{border-bottom:0;}
+  .legal-table thead th{font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); background:var(--bg-soft);}
+  .legal-table tbody th{font-weight:600; color:var(--gold);}
+  .legal-table tbody th span{display:block; font-weight:400; font-size:13.5px; color:var(--muted);}
+  .legal-table td{color:var(--ink);}
+
+  @media(max-width:900px){
+    .legal-layout{grid-template-columns:1fr;}
+    .legal-toc{position:static;}
+  }
+  @media(max-width:620px){
+    .legal-facts > div{grid-template-columns:1fr; gap:2px;}
+    /* keskeny kijelzőn a táblázat soronként kártyává bomlik */
+    .legal-table{min-width:0;}
+    .legal-table thead{display:none;}
+    .legal-table tr{display:block; padding:14px 16px; border-bottom:1px solid var(--line);}
+    .legal-table tbody tr:last-child{border-bottom:0;}
+    .legal-table th, .legal-table td{display:block; padding:4px 0; border:0;}
+    .legal-table td::before{content:attr(data-label); display:block; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent);}
+  }
+
   .site-footer h5 a{display:inline; color:inherit;}
   .site-footer h5 a:hover{color:var(--brand-light);}
 
@@ -2296,6 +2382,7 @@
     .contact-channels .sell-grid{grid-template-columns:1fr;}
     .office-row, .office-row--flip{grid-template-columns:1fr;}
     .office-map{aspect-ratio:1 / 1;}
+    .office-bg::after, .office-row--flip .office-bg::after{background:linear-gradient(180deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.9) 55%, rgba(255,255,255,.62) 100%);}
     .office-row--flip .office-info{order:0;}
     .step-list--3{grid-template-columns:1fr;}
   }
