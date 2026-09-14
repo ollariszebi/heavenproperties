@@ -330,6 +330,28 @@
     history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
   }
 
+  /* Mobilon a Location mellett a "More filters" gomb nyitja a többi mezőt.
+     A számláló zárt panelnél is jelzi, hány további szűrő él (a Location
+     látszik, azt nem számoljuk; a min–max összeg egynek számít). Nyitáskor
+     nem visszük a fókuszt a kereső mezőre, mert az a billentyűzetet is
+     felhozná. */
+  const filtersForm = document.getElementById('filters');
+  const filtersBtn = document.getElementById('filtersToggle');
+  const filtersCountEl = document.getElementById('filtersCount');
+  filtersBtn?.addEventListener('click', () => {
+    const open = !filtersForm.classList.contains('is-open');
+    filtersForm.classList.toggle('is-open', open);
+    filtersBtn.setAttribute('aria-expanded', String(open));
+  });
+  function updateMoreCount(f) {
+    if (!filtersCountEl) return;
+    const set = v => v !== null && v !== '';
+    const n = ['q', 'area', 'status', 'type', 'beds'].filter(k => set(f[k])).length
+            + (set(f.min) || set(f.max) ? 1 : 0);
+    filtersCountEl.hidden = !n;
+    filtersCountEl.innerHTML = n ? `<span class="sr-only">, active: </span>${n}` : '';
+  }
+
   function render(keepShown) {
     // szűrő- vagy rendezésváltáskor vissza az első oldalra
     if (!keepShown) shown = PAGE;
@@ -367,6 +389,7 @@
       ? '1 property'
       : `${list.length} properties${active ? ` of ${PROPERTIES.length}` : ''}`;
 
+    updateMoreCount(f);
     syncUrl(f);
   }
 

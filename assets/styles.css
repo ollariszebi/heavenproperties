@@ -3334,6 +3334,41 @@
 @media(max-width:440px){
   .filter-search, .budget-field{grid-column:auto;}
 }
+/* Mobil szűrő: alapból csak a Location + "More filters" gomb – a találatok
+   így rögtön a hajtás fölé kerülnek. Desktopon a gomb nem látszik, a
+   burkoló display:contents, vagyis a mezők a rács közvetlen elemei maradnak. */
+.filters-toggle{display:none;}
+.filters-more{display:contents;}
+.filter-search{order:-1;}          /* desktopon továbbra is a kereső az első */
+@media(max-width:680px){
+  .filters{grid-template-columns:minmax(0,1fr) auto; gap:12px; padding:14px;}
+  .filters-toggle{
+    display:inline-flex; align-items:center; gap:8px;
+    height:51px; padding:0 16px; cursor:pointer; white-space:nowrap;
+    border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink);
+    font:inherit; font-size:14.5px; font-weight:600;
+    transition:border-color .25s ease, color .25s ease, box-shadow .25s ease;
+  }
+  .filters-toggle:hover{border-color:var(--accent); color:var(--accent);}
+  .filters-toggle[aria-expanded="true"]{
+    border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 3px rgba(0,111,149,.12);
+  }
+  .filters-toggle:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .filters-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round;}
+  /* hány további szűrő él – zárt panelnél is látszik */
+  .filters-count{
+    display:inline-grid; place-items:center; min-width:20px; height:20px; padding:0 6px;
+    border-radius:999px; background:var(--accent); color:#fff;
+    font-size:12px; font-weight:600; line-height:1;
+  }
+  .filters-more{
+    display:none; grid-column:1 / -1;
+    grid-template-columns:minmax(0,1fr); gap:16px;
+    margin-top:4px; padding-top:16px; border-top:1px solid var(--line);
+  }
+  .filters.is-open .filters-more{display:grid;}
+  .filters-more .filter-search, .filters-more .budget-field{grid-column:auto;}
+}
 @media(max-width:680px){
   .prop-grid{grid-template-columns:1fr; gap:32px;}
   .results-bar{align-items:flex-start;}

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=208">
+<link rel="stylesheet" href="assets/styles.css?v=209">
 </head>
 <body>
 
@@ -150,11 +150,10 @@
 
   <div class="container">
     <form class="filters" id="filters" role="search" aria-label="Filter properties">
-      <label class="field filter-search">
-        <span>Search</span>
-        <input type="search" name="q" id="fQ" placeholder="Location, project or keyword" autocomplete="off">
-      </label>
-      <label class="field">
+      <!-- Mobilon csak a Location és a "More filters" gomb látszik, hogy a
+           találatok rögtön alatta legyenek; a többi mező a gomb mögé kerül.
+           Desktopon a burkoló display:contents, a rács és a sorrend változatlan. -->
+      <label class="field filter-location">
         <span>Location</span>
         <select name="location" id="fLocation">
           <option value="">Any</option>
@@ -164,59 +163,70 @@
           <option value="thailand">Thailand</option>
         </select>
       </label>
-      <label class="field">
-        <span>Area</span>
-        <!-- a lista a választott országtól függ, JS tölti fel -->
-        <select name="area" id="fArea" disabled>
-          <option value="">Pick a location</option>
-        </select>
-      </label>
-      <label class="field">
-        <span>Status</span>
-        <select name="status" id="fStatus">
-          <option value="">Any</option>
-          <option value="off-plan">Off-plan</option>
-          <option value="ready">Ready</option>
-        </select>
-      </label>
-      <label class="field">
-        <span>Property type</span>
-        <select name="type" id="fType">
-          <option value="">Any</option>
-          <option value="villa">Villa</option>
-          <option value="apartment">Apartment</option>
-          <option value="penthouse">Penthouse</option>
-          <option value="townhouse">Townhouse</option>
-          <option value="commercial">Commercial</option>
-        </select>
-      </label>
-      <label class="field">
-        <span>Bedrooms</span>
-        <select name="beds" id="fBeds">
-          <option value="">Any</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5+</option>
-        </select>
-      </label>
-      <!-- két mezőnek nem lehet egy közös <label>-je, ezért div + saját aria-label -->
-      <div class="field budget-field">
-        <span id="budgetLabel">Budget</span>
-        <div class="budget-range">
-          <div class="money-input">
-            <input type="text" inputmode="numeric" id="fMin" placeholder="Min"
-                   aria-label="Minimum price in US dollars" autocomplete="off">
-            <span class="money-suffix" aria-hidden="true">USD</span>
+      <button class="filters-toggle" id="filtersToggle" type="button" aria-expanded="false" aria-controls="filtersMore">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>
+        <span>More filters</span>
+        <span class="filters-count" id="filtersCount" hidden></span>
+      </button>
+      <div class="filters-more" id="filtersMore">
+        <label class="field filter-search">
+          <span>Search</span>
+          <input type="search" name="q" id="fQ" placeholder="Location, project or keyword" autocomplete="off">
+        </label>
+        <label class="field">
+          <span>Area</span>
+          <!-- a lista a választott országtól függ, JS tölti fel -->
+          <select name="area" id="fArea" disabled>
+            <option value="">Pick a location</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <select name="status" id="fStatus">
+            <option value="">Any</option>
+            <option value="off-plan">Off-plan</option>
+            <option value="ready">Ready</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Property type</span>
+          <select name="type" id="fType">
+            <option value="">Any</option>
+            <option value="villa">Villa</option>
+            <option value="apartment">Apartment</option>
+            <option value="penthouse">Penthouse</option>
+            <option value="townhouse">Townhouse</option>
+            <option value="commercial">Commercial</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Bedrooms</span>
+          <select name="beds" id="fBeds">
+            <option value="">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
+          </select>
+        </label>
+        <!-- két mezőnek nem lehet egy közös <label>-je, ezért div + saját aria-label -->
+        <div class="field budget-field">
+          <span id="budgetLabel">Budget</span>
+          <div class="budget-range">
+            <div class="money-input">
+              <input type="text" inputmode="numeric" id="fMin" placeholder="Min"
+                     aria-label="Minimum price in US dollars" autocomplete="off">
+              <span class="money-suffix" aria-hidden="true">USD</span>
+            </div>
+            <div class="money-input">
+              <input type="text" inputmode="numeric" id="fMax" placeholder="Max"
+                     aria-label="Maximum price in US dollars" autocomplete="off">
+              <span class="money-suffix" aria-hidden="true">USD</span>
+            </div>
           </div>
-          <div class="money-input">
-            <input type="text" inputmode="numeric" id="fMax" placeholder="Max"
-                   aria-label="Maximum price in US dollars" autocomplete="off">
-            <span class="money-suffix" aria-hidden="true">USD</span>
-          </div>
+          <p class="budget-note" id="budgetNote" role="status" hidden>Minimum is higher than maximum.</p>
         </div>
-        <p class="budget-note" id="budgetNote" role="status" hidden>Minimum is higher than maximum.</p>
       </div>
     </form>
 
@@ -431,6 +441,6 @@
 </div>
 
 <script src="assets/app.js?v=202" defer></script>
-<script src="assets/properties.js?v=194" defer></script>
+<script src="assets/properties.js?v=209" defer></script>
 </body>
 </html>
