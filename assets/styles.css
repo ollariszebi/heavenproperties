@@ -2731,7 +2731,23 @@
 .tour-shot:hover img{transform:scale(1.02);}
 .tour-shot:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
 @media(max-width:760px){
+  /* Mobilon két sor: felül Vissza + kerek ikon-gombok (Hívás, Üzenet),
+     alatta a médiafülek teljes szélességben – egy sorban nem fértek el,
+     a fülek levágódtak. */
+  .tour-bar{
+    flex-wrap:wrap; gap:8px 10px;
+    padding:calc(8px + env(safe-area-inset-top, 0px)) 16px 0;
+  }
+  .tour-back{order:1; padding:8px 4px 8px 0;}
+  .tour-actions{order:2; margin-left:auto;}
+  .tour-act{width:42px; height:42px; padding:0; justify-content:center;}
+  .tour-act svg{width:18px; height:18px;}
   .tour-actions .tour-act span{display:none;}
+  .tour-tabs{
+    order:3; flex:1 1 100%; margin:0 -16px; padding:2px 16px 10px;
+    gap:4px; justify-content:space-between;
+  }
+  .tour-tab{flex:1 0 auto; padding:9px 12px; font-size:14px; text-align:center;}
   .tour-grid{grid-template-columns:1fr;}
   .tour-grid > button:first-child img{aspect-ratio:16/10;}
 }
