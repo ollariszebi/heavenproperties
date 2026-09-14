@@ -396,10 +396,10 @@
     <aside class="listing-aside">
       <div class="agent-card">
         <div class="agent-top">
-          <div class="agent-avatar" style="background-image:url('/images/peter-jen.png')" role="img" aria-label="Peter Jen"></div>
+          <img class="agent-logo" src="/images/logo.svg" alt="HEAVEN. Properties">
           <div>
-            <div class="agent-name">Peter Jen</div>
-            <div class="agent-role">Co-Founder, HEAVEN. Livings</div>
+            <div class="agent-name">HEAVEN. Properties</div>
+            <div class="agent-role">Our advisors are here to help</div>
           </div>
         </div>
 
@@ -415,6 +415,23 @@
           <div><dt>Listed</dt><dd>13 Jul 2026</dd></div>
           <div><dt>Last updated</dt><dd>12 Aug 2026</dd></div>
         </dl>
+
+        <!-- Hivatalos hirdetési engedély: az ingatlanhoz tartozó QR-kód és
+             engedélyszám. A QR-kód képét a src-be kell tenni (feltöltött fájl),
+             az engedélyszámot pedig a permit-no mezőbe. Amíg nincs, helykitöltő. -->
+        <div class="permit">
+          <a class="permit-qr" href="#" aria-label="Advertising permit QR code">
+            <img src="/images/permit-qr-placeholder.svg" alt="Advertising permit QR code">
+          </a>
+          <div class="permit-text">
+            <span class="permit-label">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+              Verified listing
+            </span>
+            <span class="permit-no">Permit No. <strong>&mdash;</strong></span>
+            <span class="permit-help">Scan the QR code to verify this listing&rsquo;s official advertising permit.</span>
+          </div>
+        </div>
       </div>
     </aside>
   </div>

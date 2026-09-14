@@ -2034,13 +2034,32 @@
   }
 
   /* ---------- Careers ---------- */
-  /* IDEIGLENES banner: a csapatfotó (ugyanaz, mint az About-on) */
+  /* Karrier banner: háttérvideó. Rétegek alulról: fotó (tartalék) -> videó
+     -> sötétítő fátyol -> felhők -> szöveg. A fátyol külön réteg, mert a
+     videó a .page-hero-bg saját gradiensét eltakarná. */
   .page-hero--careers .page-hero-bg{
+    background:url('/images/about-hero.jpg') center 58% / cover no-repeat;
+  }
+  .hero-video{
+    position:absolute; inset:0; z-index:0; overflow:hidden;
+    pointer-events:none;
+    /* a konténer méretéhez igazítjuk a 16:9-es iframe-et (cover hatás) */
+    container-type:size;
+  }
+  .hero-video iframe{
+    position:absolute; top:50%; left:50%;
+    width:max(100cqw, 177.78cqh); height:max(100cqh, 56.25cqw);
+    transform:translate(-50%, -50%);
+    border:0; display:block;
+  }
+  .hero-video-scrim{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
     background:
       linear-gradient(100deg, rgba(0,18,25,.80) 0%, rgba(0,18,25,.58) 32%, rgba(0,18,25,.20) 58%, rgba(0,18,25,0) 76%),
-      linear-gradient(180deg, rgba(0,18,25,.48) 0%, rgba(0,18,25,.20) 34%, rgba(0,18,25,.16) 58%, rgba(0,18,25,.30) 100%),
-      url('/images/about-hero.jpg') center 58% / cover no-repeat;
+      linear-gradient(180deg, rgba(0,18,25,.48) 0%, rgba(0,18,25,.20) 34%, rgba(0,18,25,.16) 58%, rgba(0,18,25,.30) 100%);
   }
+  /* mozgáscsökkentést kérő látogatónál nincs videó, csak a fotó */
+  @media(prefers-reduced-motion:reduce){ .hero-video{display:none;} }
   .careers-hero-cta{margin-top:22px;}
 
   .job-list{display:flex; flex-direction:column; border-top:1px solid var(--line);}
@@ -2785,14 +2804,34 @@
   box-shadow:0 20px 50px rgba(0,31,41,.30);
 }
 .agent-top{display:flex; align-items:center; gap:16px; margin-bottom:26px;}
-.agent-avatar{
-  width:64px; height:64px; border-radius:50%; flex-shrink:0;
-  background-color:rgba(255,255,255,.07);
-  background-size:172%; background-position:center 20%;
-  box-shadow:0 0 0 1px rgba(255,255,255,.14);
-}
+/* nem konkrét személy, hanem a cég: az emblémás logó ül a név mellett
+   (fehér, saját körrel – külön keret nem kell) */
+.agent-logo{width:64px; height:64px; flex-shrink:0; display:block;}
 .agent-name{font-weight:600; font-size:16px; color:#fff;}
 .agent-role{font-size:13px; color:rgba(255,255,255,.94);}
+/* Hivatalos hirdetési engedély a tanácsadói kártyán. A QR-kód fehér
+   alapot és csendes zónát (padding) kap, különben sötét kártyán a telefonok
+   nem olvassák be megbízhatóan. */
+.permit{
+  display:flex; align-items:center; gap:16px;
+  margin-top:22px; padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.16);
+}
+.permit-qr{
+  flex:0 0 auto; display:block; width:96px; height:96px;
+  background:#fff; border-radius:10px; padding:8px;
+}
+.permit-qr img{width:100%; height:100%; display:block;}
+.permit-text{display:flex; flex-direction:column; gap:5px; min-width:0;}
+.permit-label{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; letter-spacing:1.6px; text-transform:uppercase;
+  font-weight:600; color:var(--brand-light);
+}
+.permit-label svg{width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+.permit-no{font-size:13.5px; color:rgba(255,255,255,.9);}
+.permit-no strong{color:#fff; font-weight:600;}
+.permit-help{font-size:12px; line-height:1.5; color:rgba(255,255,255,.72);}
 .agent-pitch{
   font-size:14.5px; line-height:1.65;
   color:rgba(255,255,255,.9); margin-bottom:26px;

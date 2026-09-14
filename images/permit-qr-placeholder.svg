@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="QR code placeholder">
+  <!-- HELYKITÖLTŐ: nem beolvasható kód. Ide kerül az ingatlan hivatalos
+       hirdetési engedélyének QR-kódja (feltöltött PNG/SVG). -->
+  <rect x="2" y="2" width="116" height="116" rx="6" fill="#fff" stroke="#9aa6ab" stroke-width="2" stroke-dasharray="6 5"/>
+  <g fill="none" stroke="#6b7a80" stroke-width="5">
+    <rect x="18" y="18" width="24" height="24" rx="2"/>
+    <rect x="78" y="18" width="24" height="24" rx="2"/>
+    <rect x="18" y="78" width="24" height="24" rx="2"/>
+  </g>
+  <text x="60" y="66" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="15" font-weight="600" fill="#6b7a80">QR</text>
+</svg>
