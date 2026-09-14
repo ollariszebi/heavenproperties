@@ -145,17 +145,61 @@
   next.addEventListener('click', () => show(index + 1));
   close.addEventListener('click', closeBox);
   // háttérre kattintás zár – a képre kattintás nem
-  lb.addEventListener('click', e => { if (e.target === lb || e.target.id === 'lbStage') closeBox(); });
+  lb.addEventListener('click', e => {
+    if (swiped) { swiped = false; return; }   // húzás után ne zárjon be
+    if (e.target === lb || e.target.id === 'lbStage') closeBox();
+  });
 
-  // vízszintes húzás mobilon
-  let startX = null;
-  lb.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  lb.addEventListener('touchend', e => {
-    if (startX === null || single) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 45) show(index + (dx < 0 ? 1 : -1));
-    startX = null;
-  }, {passive:true});
+  /* Ujjal lapozás mobilon. A kép húzás közben követi az ujjat; elengedéskor
+     elég hosszú vagy gyors húzásnál kiúszik és a következő/előző kép beúszik,
+     különben visszaugrik. Függőleges mozdulatra és két ujjas nagyításra nem
+     lapoz. (A korábbi változat a `single` függvényt nem hívta meg, ezért
+     sosem lapozott.) */
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let sx = 0, sy = 0, st = 0, dx = 0, drag = null, swiped = false, busy = false;
+  const setImg = (x, withTransition) => {
+    img.style.transition = withTransition ? 'transform .2s ease, opacity .2s ease' : 'none';
+    img.style.transform = x ? `translateX(${x}px)` : '';
+    img.style.opacity = x ? String(Math.max(.35, 1 - Math.abs(x) / 700)) : '';
+  };
+  lb.addEventListener('touchstart', e => {
+    swiped = false;
+    if (e.touches.length !== 1 || single() || busy) { drag = false; return; }
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now();
+    dx = 0; drag = null;
+  }, { passive: true });
+  lb.addEventListener('touchmove', e => {
+    if (drag === false || e.touches.length !== 1) { if (drag) setImg(0, true); drag = false; return; }
+    const mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+    if (drag === null) {
+      if (Math.abs(mx) < 8 && Math.abs(my) < 8) return;
+      drag = Math.abs(mx) > Math.abs(my);      // vízszintes szándék?
+      if (!drag) return;
+    }
+    dx = mx;
+    setImg(dx, false);
+  }, { passive: true });
+  const endDrag = () => {
+    if (!drag) { drag = null; return; }
+    drag = null; swiped = true;   // a következő érintésig nem zár a háttér-kattintás
+    const fast = Math.abs(dx) > 25 && Date.now() - st < 250;
+    if (Math.abs(dx) < 60 && !fast) { setImg(0, true); return; }
+    const dir = dx < 0 ? 1 : -1;                // balra húzás = következő
+    if (reduce.matches) { setImg(0, false); show(index + dir); return; }
+    busy = true;
+    setImg(-dir * window.innerWidth * .45, true);
+    setTimeout(() => {
+      show(index + dir);
+      setImg(dir * window.innerWidth * .3, false);
+      img.getBoundingClientRect();              // újrarajzolás, hogy az átmenet lefusson
+      setImg(0, true);
+      setTimeout(() => { busy = false; img.style.transition = ''; }, 220);
+    }, 180);
+  };
+  lb.addEventListener('touchend', endDrag, { passive: true });
+  lb.addEventListener('touchcancel', () => { if (drag) setImg(0, true); drag = null; }, { passive: true });
+  // gombos / billentyűs léptetésnél ne maradjon ott egy félbehagyott eltolás
+  [prev, next].forEach(b => b.addEventListener('click', () => setImg(0, false)));
 })();
 
 /* Megosztás. Ikonná redukált gomb, ezért nem maradhat néma:
@@ -445,6 +489,7 @@
   function updateMore() {
     const more = jump.scrollLeft + jump.clientWidth < jump.scrollWidth - 4;
     jumpWrap.classList.toggle('has-more', more);
+    jumpWrap.classList.toggle('has-less', jump.scrollLeft > 4);
     jumpNext.hidden = !more;
   }
   function centerChip(chip) {
