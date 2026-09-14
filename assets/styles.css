@@ -3346,10 +3346,6 @@ body.lb-open{overflow:hidden;}
 }
 /* a display:grid felülírná a hidden attribútumot, ezért kell külön */
 .lightbox[hidden]{display:none;}
-/* ujjal lapozás: függőleges görgetés és nagyítás a böngészőé marad, a
-   vízszintes húzást a JS kezeli; a kép ne legyen kijelölhető/húzható */
-.lightbox{touch-action:pan-y pinch-zoom;}
-.lightbox-stage img{user-select:none; -webkit-user-select:none; -webkit-user-drag:none; will-change:transform;}
 .lightbox-bar{
   position:absolute; top:0; left:0; right:0;
   display:flex; align-items:center; justify-content:flex-end;
@@ -3380,17 +3376,28 @@ body.lb-open{overflow:hidden;}
   /* nagyon széles kijelzőn se nőjön korlátlanul */
   max-width:1500px; margin-inline:auto; width:100%;
 }
-/* A kép ÁLLANDÓ méretű keretet kap, és abban van beillesztve (contain).
-   Korábban minden kép a saját arányára zsugorodott, ezért léptetéskor a
-   magasság 429 és 509 px között ugrált, és vele a felirat is mozgott. */
-.lightbox-stage img{
-  /* Fix, fekvő keret (16:10): a méret képenként állandó, de nem nyúlik
-     majdnem négyzetesre, ahol a fekvő fotók alatt-fölött üres sáv maradna.
-     A magasság korlátja alacsony ablakon a szélességet is arányosan viszi. */
-  flex:0 0 auto;
+/* A kép ÁLLANDÓ méretű keretet kap, és abban van beillesztve (contain) –
+   így léptetéskor nem ugrál a magasság és vele a felirat.
+   A keretben egy csúszka fut: előző / aktuális / következő kép egymás
+   mellett, alapból a középső látszik (-100%). Húzáskor a JS a sávot tolja,
+   így a szomszéd kép már ott van és folyamatosan jön be. */
+.lb-viewport{
+  position:relative; flex:0 0 auto;
   width:100%; aspect-ratio:16/10; max-height:100%;
-  object-fit:contain; border-radius:8px;
+  overflow:hidden; border-radius:8px;
+  /* függőleges görgetés és nagyítás a böngészőé, a vízszintes húzás a JS-é */
+  touch-action:pan-y pinch-zoom;
 }
+.lb-track{
+  display:flex; width:100%; height:100%;
+  transform:translate3d(-100%,0,0); will-change:transform;
+}
+.lb-slide{
+  flex:0 0 100%; width:100%; height:100%; object-fit:contain;
+  padding-inline:6px;   /* két kép között húzáskor kis rés látszik */
+  user-select:none; -webkit-user-select:none; -webkit-user-drag:none; -webkit-touch-callout:none;
+}
+.lb-slide:not([src]){visibility:hidden;}
 /* a kép alatt: bal oldalt a felirat, alatta/mellette a képszámláló */
 .lightbox-foot{
   display:flex; flex-direction:column; align-items:center; gap:7px;

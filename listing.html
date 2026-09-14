@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=206">
+<link rel="stylesheet" href="assets/styles.css?v=207">
 </head>
 <body class="has-action-bar">
 
@@ -715,7 +715,14 @@
   </div>
   <button class="lightbox-nav lightbox-prev" id="lbPrev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5 8 12 15 19"/></svg></button>
   <figure class="lightbox-stage" id="lbStage">
-    <img id="lbImg" alt="">
+    <!-- csúszka: előző / aktuális / következő kép egymás mellett -->
+    <div class="lb-viewport">
+      <div class="lb-track" id="lbTrack">
+        <img class="lb-slide" alt="" aria-hidden="true">
+        <img class="lb-slide" id="lbImg" alt="">
+        <img class="lb-slide" alt="" aria-hidden="true">
+      </div>
+    </div>
     <figcaption class="lightbox-foot">
       <span class="lightbox-cap" id="lbCap"></span>
       <span class="lightbox-count" id="lbCount"></span>
@@ -725,6 +732,6 @@
 </div>
 
 <script src="assets/app.js?v=202" defer></script>
-<script src="assets/listing.js?v=207" defer></script>
+<script src="assets/listing.js?v=208" defer></script>
 </body>
 </html>

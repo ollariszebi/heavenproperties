@@ -62,7 +62,8 @@
   })).filter(p => p.src);
   if (!photos.length) return;
 
-  const img   = document.getElementById('lbImg');
+  let   img   = document.getElementById('lbImg');
+  const track = document.getElementById('lbTrack');
   const cap   = document.getElementById('lbCap');
   const count = document.getElementById('lbCount');
   const prev  = document.getElementById('lbPrev');
@@ -81,24 +82,27 @@
   let opener = null;
   const single = () => list.length < 2;
 
+  const setSrc = (el, src) => { if (el.getAttribute('src') !== src) el.src = src; };
   function show(n) {
     index = (n + list.length) % list.length;
-    img.src = list[index].src;
+    setSrc(img, list[index].src);
     img.alt = list[index].cap;
     cap.textContent = list[index].cap;
     count.textContent = `${index + 1} / ${list.length}`;
     prev.hidden = next.hidden = single();
-    // a szomszédos képek előtöltése, hogy a léptetés ne villanjon
-    [index + 1, index - 1].forEach(i => {
-      const p = list[(i + list.length) % list.length];
-      if (p !== list[index]) new Image().src = p.src;
+    // a szomszédos képek a csúszka két szélén várnak – húzáskor már ott vannak
+    const slides = track.children;
+    [[0, -1], [2, 1]].forEach(([slot, d]) => {
+      if (single()) { slides[slot].removeAttribute('src'); return; }
+      setSrc(slides[slot], list[(index + d + list.length) % list.length].src);
+      slides[slot].alt = '';
     });
   }
 
   function onKey(e) {
     if (e.key === 'Escape')          { closeBox(); }
-    else if (e.key === 'ArrowLeft')  { if (!single()) show(index - 1); }
-    else if (e.key === 'ArrowRight') { if (!single()) show(index + 1); }
+    else if (e.key === 'ArrowLeft')  { go(-1); }
+    else if (e.key === 'ArrowRight') { go(1); }
     else if (e.key === 'Tab') {
       // fókuszcsapda: a réteg mögé nem lehet kitabolni
       const stops = [close, prev, next].filter(el => !el.hidden);
@@ -114,6 +118,7 @@
   function openBox(n, customList) {
     opener = document.activeElement;
     list = customList && customList.length ? customList : photos;
+    finish(); resetTrack();
     show(n);
     lb.hidden = false;
     document.body.classList.add('lb-open');
@@ -122,6 +127,7 @@
   }
 
   function closeBox() {
+    finish();
     lb.hidden = true;
     document.body.classList.remove('lb-open');
     document.removeEventListener('keydown', onKey);
@@ -141,8 +147,8 @@
   window.__openPhoto = openBox;
   window.__openGallery = openGallery;
 
-  prev.addEventListener('click', () => show(index - 1));
-  next.addEventListener('click', () => show(index + 1));
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
   close.addEventListener('click', closeBox);
   // háttérre kattintás zár – a képre kattintás nem
   lb.addEventListener('click', e => {
@@ -150,56 +156,104 @@
     if (e.target === lb || e.target.id === 'lbStage') closeBox();
   });
 
-  /* Ujjal lapozás mobilon. A kép húzás közben követi az ujjat; elengedéskor
-     elég hosszú vagy gyors húzásnál kiúszik és a következő/előző kép beúszik,
-     különben visszaugrik. Függőleges mozdulatra és két ujjas nagyításra nem
-     lapoz. (A korábbi változat a `single` függvényt nem hívta meg, ezért
-     sosem lapozott.) */
+  /* Csúszka és ujjal lapozás. Húzás közben a sáv követi az ujjat (a szomszéd
+     kép folyamatosan jön be); elengedéskor a húzás hossza VAGY a lendület dönt,
+     és a hátralévő utat a lendülethez igazított idő alatt teszi meg. Nincs
+     zárolás: mozgás közben újra megfogható, ilyenkor onnan folytatódik, ahol
+     épp tart. Befejezéskor nem cseréljük a képek src-jét (villanna), hanem a
+     három <img> sorrendjét forgatjuk. Függőleges mozdulatra és két ujjas
+     nagyításra nem lapoz. */
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let sx = 0, sy = 0, st = 0, dx = 0, drag = null, swiped = false, busy = false;
-  const setImg = (x, withTransition) => {
-    img.style.transition = withTransition ? 'transform .2s ease, opacity .2s ease' : 'none';
-    img.style.transform = x ? `translateX(${x}px)` : '';
-    img.style.opacity = x ? String(Math.max(.35, 1 - Math.abs(x) / 700)) : '';
+  const W = () => track.parentElement.clientWidth || 1;
+  let anim = null, drag = null, swiped = false;
+  let sx = 0, sy = 0, lx = 0, lt = 0, vx = 0, dx = 0, base = 0;
+
+  const setX = (px, ms) => {
+    track.style.transition = ms ? `transform ${ms}ms cubic-bezier(.22,.61,.36,1)` : 'none';
+    track.style.transform = px ? `translate3d(calc(-100% + ${px}px),0,0)` : '';
   };
-  lb.addEventListener('touchstart', e => {
+  const resetTrack = () => { track.style.transition = 'none'; track.style.transform = ''; };
+  // a kész lépés rögzítése: a képek sorrendjének forgatása + feliratok
+  function commit(dir) {
+    if (dir === 1) track.appendChild(track.firstElementChild);
+    else track.prepend(track.lastElementChild);
+    [...track.children].forEach((el, i) => {
+      if (i === 1) { el.id = 'lbImg'; el.removeAttribute('aria-hidden'); img = el; }
+      else { el.removeAttribute('id'); el.setAttribute('aria-hidden', 'true'); }
+    });
+    resetTrack();
+    show(index + dir);
+  }
+  // futó animáció azonnali lezárása; visszaadja, hol tartott (px, az új alaphoz képest)
+  function finish() {
+    if (!anim) return 0;
+    const w = W();
+    const cur = new DOMMatrixReadOnly(getComputedStyle(track).transform).m41 + w;
+    clearTimeout(anim.t);
+    const d = anim.dir; anim = null;
+    if (d) { commit(d); return cur + d * w; }
+    resetTrack();
+    return cur;
+  }
+  function go(dir, from = 0, v = 0) {
+    if (single()) return;
+    if (!from) from = finish();
+    if (reduce.matches) { commit(dir); return; }
+    const w = W();
+    const ms = Math.round(Math.min(360, Math.max(170, (w - Math.abs(from)) / Math.max(Math.abs(v), 1.3))));
+    setX(from || 0.01, 0);
+    track.getBoundingClientRect();           // újrarajzolás, hogy az átmenet lefusson
+    setX(-dir * w, ms);
+    anim = { dir, t: setTimeout(finish, ms + 40) };
+  }
+  function snapBack(from) {
+    if (!from) { resetTrack(); return; }
+    setX(from, 0); track.getBoundingClientRect();
+    setX(0.01, 220);
+    anim = { dir: 0, t: setTimeout(finish, 260) };
+  }
+
+  const vp = track.parentElement;
+  vp.addEventListener('touchstart', e => {
     swiped = false;
-    if (e.touches.length !== 1 || single() || busy) { drag = false; return; }
-    sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now();
-    dx = 0; drag = null;
+    if (e.touches.length !== 1 || single()) { drag = false; return; }
+    base = finish();                          // mozgás közben megfogva onnan folytatja
+    if (base) setX(base, 0);
+    sx = lx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    lt = performance.now(); vx = 0; dx = base;
+    drag = base ? true : null;
   }, { passive: true });
-  lb.addEventListener('touchmove', e => {
-    if (drag === false || e.touches.length !== 1) { if (drag) setImg(0, true); drag = false; return; }
-    const mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+
+  vp.addEventListener('touchmove', e => {
+    if (drag === false) return;
+    if (e.touches.length !== 1) { drag = false; snapBack(dx); return; }
+    const x = e.touches[0].clientX, mx = x - sx, my = e.touches[0].clientY - sy;
     if (drag === null) {
-      if (Math.abs(mx) < 8 && Math.abs(my) < 8) return;
-      drag = Math.abs(mx) > Math.abs(my);      // vízszintes szándék?
+      if (Math.abs(mx) < 6 && Math.abs(my) < 6) return;
+      drag = Math.abs(mx) > Math.abs(my);     // vízszintes szándék?
       if (!drag) return;
     }
-    dx = mx;
-    setImg(dx, false);
-  }, { passive: true });
+    e.preventDefault();                       // ne görgessen / ne lapozzon vissza a böngésző
+    const now = performance.now();
+    const inst = (x - lx) / Math.max(now - lt, 1);
+    vx = vx * 0.3 + inst * 0.7;
+    lx = x; lt = now;
+    dx = base + mx;
+    setX(dx, 0);
+  }, { passive: false });
+
   const endDrag = () => {
     if (!drag) { drag = null; return; }
-    drag = null; swiped = true;   // a következő érintésig nem zár a háttér-kattintás
-    const fast = Math.abs(dx) > 25 && Date.now() - st < 250;
-    if (Math.abs(dx) < 60 && !fast) { setImg(0, true); return; }
-    const dir = dx < 0 ? 1 : -1;                // balra húzás = következő
-    if (reduce.matches) { setImg(0, false); show(index + dir); return; }
-    busy = true;
-    setImg(-dir * window.innerWidth * .45, true);
-    setTimeout(() => {
-      show(index + dir);
-      setImg(dir * window.innerWidth * .3, false);
-      img.getBoundingClientRect();              // újrarajzolás, hogy az átmenet lefusson
-      setImg(0, true);
-      setTimeout(() => { busy = false; img.style.transition = ''; }, 220);
-    }, 180);
+    drag = null; swiped = true;               // a következő érintésig nem zár a háttér-kattintás
+    if (performance.now() - lt > 90) vx = 0;  // megállt az ujj elengedés előtt
+    const w = W();
+    let dir = 0;
+    if (Math.abs(vx) > 0.4 && Math.sign(vx) === Math.sign(dx)) dir = dx < 0 ? 1 : -1;
+    else if (Math.abs(dx) > w * 0.22) dir = dx < 0 ? 1 : -1;
+    if (dir) go(dir, dx, vx); else snapBack(dx);
   };
-  lb.addEventListener('touchend', endDrag, { passive: true });
-  lb.addEventListener('touchcancel', () => { if (drag) setImg(0, true); drag = null; }, { passive: true });
-  // gombos / billentyűs léptetésnél ne maradjon ott egy félbehagyott eltolás
-  [prev, next].forEach(b => b.addEventListener('click', () => setImg(0, false)));
+  vp.addEventListener('touchend', endDrag, { passive: true });
+  vp.addEventListener('touchcancel', () => { if (drag) snapBack(dx); drag = null; }, { passive: true });
 })();
 
 /* Megosztás. Ikonná redukált gomb, ezért nem maradhat néma:
