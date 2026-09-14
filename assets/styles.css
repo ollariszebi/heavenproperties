@@ -2466,8 +2466,9 @@
   font-size:13.5px; color:var(--muted); padding:8px 15px; border-radius:999px;
   transition:background .25s ease, color .25s ease;
 }
-.tour-tab:hover{color:var(--ink); background:var(--bg-soft);}
-.tour-tab[aria-current="true"]{background:var(--ink); color:#fff;}
+/* aktív és hover fül egyaránt kék (fehér felirat a --accent-en 5,66:1) */
+.tour-tab:hover,
+.tour-tab[aria-current="true"]{background:var(--accent); color:#fff;}
 .tour-actions{display:flex; gap:8px; flex:0 0 auto;}
 .tour-act{
   display:inline-flex; align-items:center; gap:7px;
@@ -2512,8 +2513,8 @@
    vonal. A korábbi tömör arany körvonal a bélyegképen beragadt keretnek
    látszott, nem jelzésnek. */
 .tour-chip[aria-current="true"] span{
-  color:var(--gold); font-weight:600;
-  box-shadow:0 2px 0 var(--gold);
+  color:var(--accent); font-weight:600;
+  box-shadow:0 2px 0 var(--accent);
 }
 /* képszekciók */
 .tour-sec{margin-bottom:clamp(40px, 4.5vw, 76px); scroll-margin-top:20px;}
@@ -2524,10 +2525,6 @@
   letter-spacing:-.01em; color:var(--gold);
   margin-bottom:clamp(14px, 1.4vw, 22px);
   display:flex; align-items:baseline; gap:12px;
-}
-.tour-sec h3 em{
-  font-style:normal; font-size:13px; font-weight:500;
-  color:var(--muted); letter-spacing:1.4px;
 }
 .tour-grid{
   display:grid; gap:clamp(10px, 1.2vw, 18px);

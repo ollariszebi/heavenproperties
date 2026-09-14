@@ -130,7 +130,7 @@
 
   /* A galéria csempéi és a "Show all" a teljes képernyős fotótúrát nyitják
      (ha be van töltve); a túrán belüli képek nyitják aztán ezt a nagyítót. */
-  const CAT_OF_TILE = ['exterior', 'living', 'terrace', 'bedrooms', 'views'];
+  const CAT_OF_TILE = ['exterior', 'living', 'terrace', 'bedrooms', 'other'];
   function openGallery(i) {
     if (typeof window.__openTour === 'function') window.__openTour(CAT_OF_TILE[i] || null);
     else openBox(i);
@@ -272,7 +272,8 @@
     { id:'bedrooms', name:'Bedrooms', shots:[
       { src:'/images/trending-6.jpg',         cap:'Principal bedroom' },
       { src:'/images/listing/p4.jpg',         cap:'Guest bedroom' } ] },
-    { id:'views', name:'Views', shots:[
+    /* a be nem sorolható képek gyűjtőhelye */
+    { id:'other', name:'Others', shots:[
       { src:'/images/trending-1.jpg',         cap:'Skyline view from the terrace' },
       { src:'/images/listing/p1.jpg',         cap:'Sea view' } ] }
   ];
@@ -320,7 +321,7 @@
       const sec = document.createElement('section');
       sec.className = 'tour-sec'; sec.id = 'tour-' + cat.id;
       const h = document.createElement('h3');
-      h.innerHTML = `${cat.name}<em>${cat.shots.length}</em>`;
+      h.textContent = cat.name;
       const grid = document.createElement('div');
       grid.className = 'tour-grid';
       cat.shots.forEach(shot => {
@@ -474,6 +475,11 @@
     open(catId);
     observeAll();
     setView('photos');
+    /* megnyitáskor is legyen kijelölt kategória: a kért, vagy az első –
+       görgetés közben a figyelő ezt magától továbbviszi */
+    const first = catId || jump.querySelector('.tour-chip')?.dataset.target;
+    jump.querySelectorAll('.tour-chip').forEach(c =>
+      c.setAttribute('aria-current', String(c.dataset.target === first)));
     if (catId) requestAnimationFrame(() => goto(catId));
   };
 })();
