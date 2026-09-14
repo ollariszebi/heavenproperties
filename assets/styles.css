@@ -2254,36 +2254,17 @@
   .contact-card-offices strong{display:block; font-size:16px; color:var(--ink);}
   .contact-card-links{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:auto; padding-top:18px;}
 
-  /* Irodák: nagy sorok, egyik oldalt szöveg, másikon térkép (a második
-     sor tükrözve). A Google embed színeit nem lehet stílusozni, ezért
-     szűrővel visszafogott, szinte szürke tónust kap; hoverre színes.
-     A bal felső helykártyát az iframe felfelé tolásával takarjuk ki –
-     az alsó Google-attribúció látható marad. */
-  .office-list{display:flex; flex-direction:column; gap:0;}
+  /* Irodák: soronként szöveg + irodafotó + térkép; a második sor tükrözve,
+     így a fotó mindig a szöveg mellé, a térkép a külső szélre kerül.
+     A Google embed színeit nem lehet stílusozni, ezért szűrővel
+     visszafogott tónust kap; hoverre színes. A bal felső helykártyát az
+     iframe felfelé tolásával takarjuk ki – az alsó attribúció látható marad. */
+  .office-list{display:flex; flex-direction:column; gap:clamp(48px, 6vw, 96px);}
   .office-row{
-    position:relative; isolation:isolate;
-    display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:clamp(28px, 5vw, 80px); align-items:center;
-    padding-block:clamp(44px, 5vw, 80px);
+    display:grid; grid-template-columns:minmax(0,4fr) minmax(0,8fr);
+    gap:clamp(28px, 4.5vw, 72px); align-items:center;
   }
-  /* Irodafotó finoman a háttérben: teljes szélességű sáv, a szöveg oldalán
-     szinte fehér fátyollal (olvashatóság), a térkép felé halványabban; a
-     sáv teteje és alja maszkkal a fehérbe olvad, így nincs éles szél. */
-  .office-bg{
-    position:absolute; z-index:-1; top:0; bottom:0;
-    left:50%; width:100vw; margin-left:-50vw;
-    background:var(--office-img) center / cover no-repeat;
-    -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-            mask-image:linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-  }
-  .office-bg::after{
-    content:""; position:absolute; inset:0;
-    background:linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.86) 36%, rgba(255,255,255,.5) 66%, rgba(255,255,255,.32) 100%);
-  }
-  .office-row--flip .office-bg::after{
-    background:linear-gradient(270deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.86) 36%, rgba(255,255,255,.5) 66%, rgba(255,255,255,.32) 100%);
-  }
-  .office-row--flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
+  .office-row--flip{grid-template-columns:minmax(0,8fr) minmax(0,4fr);}
   .office-row--flip .office-info{order:2;}
   .office-info{display:flex; flex-direction:column; gap:14px;}
   .office-label{font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent);}
@@ -2295,11 +2276,21 @@
   .office-address span{display:block; font-size:14.5px; color:var(--muted);}
   .office-info p{font-size:15px; line-height:1.75; color:var(--muted); max-width:46ch;}
   .office-actions{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px; margin-top:8px;}
-  .office-map{
-    position:relative; overflow:hidden; max-width:100%;
-    aspect-ratio:16 / 11; border-radius:20px; background:var(--bg-soft);
+  .office-media{
+    display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+    gap:clamp(12px, 1.2vw, 18px); height:clamp(380px, 36vw, 520px);
+  }
+  .office-row--flip .office-media{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);}
+  .office-photo, .office-map{
+    position:relative; overflow:hidden; margin:0; max-width:100%;
+    border-radius:20px; background:var(--bg-soft);
     box-shadow:0 24px 60px rgba(12,20,22,.10); isolation:isolate;
   }
+  .office-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform .9s ease;
+  }
+  .office-photo:hover img{transform:scale(1.03);}
   .office-map iframe{
     position:absolute; left:0; top:-150px; width:100%; height:calc(100% + 150px);
     border:0; display:block;
@@ -2381,9 +2372,12 @@
   @media(max-width:820px){
     .contact-channels .sell-grid{grid-template-columns:1fr;}
     .office-row, .office-row--flip{grid-template-columns:1fr;}
-    .office-map{aspect-ratio:1 / 1;}
-    .office-bg::after, .office-row--flip .office-bg::after{background:linear-gradient(180deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.9) 55%, rgba(255,255,255,.62) 100%);}
     .office-row--flip .office-info{order:0;}
+    .office-media, .office-row--flip .office-media{grid-template-columns:1fr; height:auto;}
+    .office-photo{aspect-ratio:4 / 3;}
+    .office-map{aspect-ratio:1 / 1;}
+    /* mobilon mindig fotó előbb, térkép utána */
+    .office-row--flip .office-photo{order:-1;}
     .step-list--3{grid-template-columns:1fr;}
   }
 
