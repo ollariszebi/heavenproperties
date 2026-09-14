@@ -1794,6 +1794,13 @@
   @media(max-width:1100px) and (min-width:821px){
     .founder{grid-template-columns:clamp(130px, 13vw, 170px) minmax(0,1fr);}
   }
+  /* mobilon egy oszlop: portré felül, szöveg alatta teljes szélességben –
+     egymás mellett a szöveg keskeny csíkba szorult */
+  @media(max-width:620px){
+    .founder{grid-template-columns:minmax(0,1fr); gap:18px;}
+    /* erősebb szelektor: a lentebb álló alap .founder-photo{width:100%} felülírná */
+    .founder .founder-photo{width:min(200px, 58%);}
+  }
   .founder-photo{
     width:100%; aspect-ratio:1/1; border-radius:50%; overflow:hidden;
     background:var(--bg-soft);
