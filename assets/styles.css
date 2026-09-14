@@ -2037,8 +2037,10 @@
   /* Karrier banner: háttérvideó. Rétegek alulról: fotó (tartalék) -> videó
      -> sötétítő fátyol -> felhők -> szöveg. A fátyol külön réteg, mert a
      videó a .page-hero-bg saját gradiensét eltakarná. */
+  /* a tartalék kép a videó saját kezdőképe (Vimeo), így betöltés közben
+     nem egy másik fotó villan fel */
   .page-hero--careers .page-hero-bg{
-    background:url('/images/about-hero.jpg') center 58% / cover no-repeat;
+    background:url('/images/careers-video-poster.jpg') center / cover no-repeat;
   }
   .hero-video{
     position:absolute; inset:0; z-index:0; overflow:hidden;
@@ -2051,7 +2053,12 @@
     width:max(100cqw, 177.78cqh); height:max(100cqh, 56.25cqw);
     transform:translate(-50%, -50%);
     border:0; display:block;
+    /* rejtve indul, és csak valódi lejátszáskor úszik be a kezdőkép fölé –
+       így a lejátszó betöltése és az alacsony minőségű első másodpercek
+       nem látszanak */
+    opacity:0; transition:opacity .9s ease;
   }
+  .hero-video.is-playing iframe{opacity:1;}
   .hero-video-scrim{
     position:absolute; inset:0; z-index:1; pointer-events:none;
     background:
