@@ -281,6 +281,8 @@
   const scroll   = document.getElementById('tourScroll');
   const tabs     = document.getElementById('tourTabs');
   const jump     = document.getElementById('tourJump');
+  const jumpWrap = document.getElementById('tourJumpWrap');
+  const jumpNext = document.getElementById('tourJumpNext');
   const sections = document.getElementById('tourSections');
   const sub      = document.getElementById('tourSub');
   const total    = TOUR.reduce((n, c) => n + c.shots.length, 0);
@@ -385,7 +387,8 @@
     if (!activeTab) activeTab = tabs.querySelector(`.tour-tab[data-act="${which}"]`);
     const isPhotos = which === 'photos';
     const isMap    = which === 'map';
-    jump.hidden      = !isPhotos;
+    jumpWrap.hidden  = !isPhotos;
+    if (isPhotos) requestAnimationFrame(updateMore);
     sections.hidden  = !isPhotos;
     document.getElementById('tourSub').hidden = !isPhotos;
     title.hidden     = !isPhotos;
@@ -432,8 +435,26 @@
       const id = en.target.id.replace('tour-', '');
       jump.querySelectorAll('.tour-chip').forEach(c =>
         c.setAttribute('aria-current', String(c.dataset.target === id)));
+      centerChip(jump.querySelector(`.tour-chip[data-target="${id}"]`));
     });
   }, { root: scroll, rootMargin: '-10% 0px -70% 0px' });
+  /* A bélyegkép-sor mobilon nem fér ki: jobb szélén halványítás és egy nyíl
+     jelzi, hogy van még kategória. Görgetés közben az aktív bélyegkép a sor
+     közepére csúszik – scrollIntoView helyett kézzel, mert az a függőleges
+     görgetőt is visszarántaná a sor tetejére. */
+  function updateMore() {
+    const more = jump.scrollLeft + jump.clientWidth < jump.scrollWidth - 4;
+    jumpWrap.classList.toggle('has-more', more);
+    jumpNext.hidden = !more;
+  }
+  function centerChip(chip) {
+    if (!chip || jump.scrollWidth <= jump.clientWidth) return;
+    jump.scrollTo({ left: chip.offsetLeft - (jump.clientWidth - chip.offsetWidth) / 2, behavior: 'smooth' });
+  }
+  jump.addEventListener('scroll', updateMore, { passive: true });
+  window.addEventListener('resize', updateMore);
+  jumpNext.addEventListener('click', () =>
+    jump.scrollBy({ left: jump.clientWidth * 0.7, behavior: 'smooth' }));
   const observeAll = () => sections.querySelectorAll('.tour-sec').forEach(s => io.observe(s));
 
   /* A beágyazott térkép csak kattintásra töltődik: enélkül minden látogató

@@ -2677,11 +2677,32 @@
 .tour-title{font-size:clamp(24px, 2.4vw, 34px); font-weight:600; color:var(--gold); margin-bottom:8px;}
 .tour-sub{color:var(--muted); font-size:14.5px; margin-bottom:clamp(22px, 2.4vw, 34px);}
 /* kategória-bélyegképek: ugorj a szekcióra */
+.tour-jump-wrap{position:relative; margin-bottom:clamp(30px, 3.4vw, 52px);}
 .tour-jump{
   display:flex; gap:clamp(12px, 1.4vw, 20px); overflow-x:auto;
-  padding-bottom:6px; margin-bottom:clamp(30px, 3.4vw, 52px);
+  padding-bottom:6px;
   scrollbar-width:none;
 }
+/* "van még" jelzés: jobb oldali fehér halványítás + kerek nyíl, csak ha a
+   sor ténylegesen túlnyúlik és még nem értünk a végére */
+.tour-jump-wrap::after{
+  content:""; position:absolute; top:0; right:0; bottom:0; width:64px;
+  background:linear-gradient(90deg, rgba(255,255,255,0) 0%, #fff 90%);
+  pointer-events:none; opacity:0; transition:opacity .25s ease;
+}
+.tour-jump-wrap.has-more::after{opacity:1;}
+.tour-jump-next{
+  position:absolute; z-index:1; right:0; top:calc(clamp(110px, 10vw, 142px) * .375);
+  transform:translateY(-50%);
+  width:36px; height:36px; border-radius:50%; cursor:pointer;
+  display:grid; place-items:center;
+  border:1px solid var(--line); background:#fff; color:var(--accent);
+  box-shadow:0 6px 18px rgba(12,20,22,.14);
+  transition:background .25s ease, color .25s ease, border-color .25s ease;
+}
+.tour-jump-next:hover{background:var(--accent); border-color:var(--accent); color:#fff;}
+.tour-jump-next:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.tour-jump-next svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
 .tour-jump::-webkit-scrollbar{display:none;}
 .tour-chip{
   flex:0 0 auto; width:clamp(110px, 10vw, 142px);
@@ -2748,6 +2769,9 @@
     gap:4px; justify-content:space-between;
   }
   .tour-tab{flex:1 0 auto; padding:9px 12px; font-size:14px; text-align:center;}
+  /* két és fél bélyegkép látszik: a félig kilógó jelzi, hogy húzható */
+  .tour-chip{width:calc((100vw - 32px - 24px) / 2.45);}
+  .tour-jump-next{top:calc((100vw - 32px - 24px) / 2.45 * .375);}
   .tour-grid{grid-template-columns:1fr;}
   .tour-grid > button:first-child img{aspect-ratio:16/10;}
 }

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=203">
+<link rel="stylesheet" href="assets/styles.css?v=204">
 </head>
 <body class="has-action-bar">
 
@@ -550,7 +550,12 @@
     <div class="tour-inner">
       <h2 class="tour-title">Photo tour</h2>
       <p class="tour-sub" id="tourSub"></p>
-      <div class="tour-jump" id="tourJump"></div>
+      <div class="tour-jump-wrap" id="tourJumpWrap">
+        <div class="tour-jump" id="tourJump"></div>
+        <button class="tour-jump-next" id="tourJumpNext" type="button" aria-label="Show more sections" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
       <div class="tour-sections" id="tourSections"></div>
 
       <!-- Kérés-űrlap: a Floor Plan / Video fül ezt nyitja a túrán belül,
@@ -720,6 +725,6 @@
 </div>
 
 <script src="assets/app.js?v=202" defer></script>
-<script src="assets/listing.js?v=194" defer></script>
+<script src="assets/listing.js?v=204" defer></script>
 </body>
 </html>
