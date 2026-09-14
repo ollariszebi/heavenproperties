@@ -354,3 +354,28 @@
     `;
     trendGrid.appendChild(card);
   });
+
+/* WhatsApp widget (főoldal): kártya nyitás/zárás, Esc és kívülre kattintás zár. */
+(function () {
+  const widget = document.getElementById('waWidget');
+  if (!widget) return;
+  const fab = document.getElementById('waFab');
+  const card = document.getElementById('waCard');
+  const close = document.getElementById('waClose');
+  // a betöltés utáni első pillanatban ne ugorjon be – kis késleltetéssel jön
+  setTimeout(() => widget.classList.add('is-ready'), 1200);
+  // fókusz csak billentyűs nyitásnál ugrik a gombra (egérnél ne villanjon keret)
+  const setOpen = (open, moveFocus) => {
+    card.hidden = !open;
+    fab.setAttribute('aria-expanded', String(open));
+    if (open && moveFocus) card.querySelector('.wa-start').focus({ preventScroll: true });
+  };
+  fab.addEventListener('click', e => setOpen(card.hidden, e.detail === 0));
+  close.addEventListener('click', () => { setOpen(false); fab.focus(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !card.hidden) { setOpen(false); fab.focus(); }
+  });
+  document.addEventListener('click', e => {
+    if (!card.hidden && !widget.contains(e.target)) setOpen(false);
+  });
+})();

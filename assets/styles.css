@@ -80,7 +80,8 @@
   .site-footer strong, .site-footer b,
   .lightbox strong, .lightbox b,
   .mega-panel strong, .mega-panel b,
-  .agent-card strong, .agent-card b{color:inherit;}
+  .agent-card strong, .agent-card b,
+  .wa-card strong, .wa-card b{color:inherit;}
 
 
 
@@ -3420,4 +3421,93 @@ body.lb-open{overflow:hidden;}
 }
 @media(max-width:600px){
   .gallery{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ---------- WhatsApp widget (főoldal) ---------- */
+/* Saját gomb, nem külső beágyazás: nincs harmadik féltől jövő szkript/süti.
+   Márkakék: a kerek gomb --brand (fehér ikon 3.2:1, grafikai elemnél 3:1
+   kell), a feliratos gomb --accent (5.66:1), mert ott szöveg is van. A mobil menü
+   (59–60) és a lightbox fölé nem kerül. */
+.wa-widget{
+  position:fixed; z-index:40;
+  right:clamp(16px, 2vw, 28px);
+  bottom:calc(clamp(16px, 2vw, 28px) + env(safe-area-inset-bottom, 0px));
+  display:flex; flex-direction:column; align-items:flex-end; gap:14px;
+  opacity:0; transform:translateY(12px); pointer-events:none;
+  transition:opacity .45s ease, transform .45s ease;
+}
+.wa-widget.is-ready{opacity:1; transform:none;}
+.wa-widget.is-ready > *{pointer-events:auto;}
+.wa-fab{
+  position:relative; width:60px; height:60px; border-radius:50%; border:0; cursor:pointer;
+  background:var(--brand); color:#fff; display:grid; place-items:center;
+  box-shadow:0 12px 30px rgba(12,20,22,.22), 0 2px 6px rgba(12,20,22,.12);
+  transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.wa-fab:hover{background:#0088b8; transform:translateY(-2px); box-shadow:0 16px 36px rgba(12,20,22,.26), 0 2px 6px rgba(12,20,22,.12);}
+.wa-fab:focus-visible, .wa-close:focus-visible, .wa-start:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+.wa-fab svg{grid-area:1 / 1; transition:opacity .2s ease, transform .25s ease;}
+.wa-fab-icon{width:30px; height:30px; fill:currentColor;}
+.wa-fab-close{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; opacity:0; transform:rotate(-45deg);}
+.wa-fab[aria-expanded="true"] .wa-fab-icon{opacity:0; transform:rotate(45deg);}
+.wa-fab[aria-expanded="true"] .wa-fab-close{opacity:1; transform:none;}
+/* finom pulzáló gyűrű, hogy észrevehető legyen – csak egyszer fut le */
+.wa-widget.is-ready .wa-fab::after{
+  content:""; position:absolute; inset:0; border-radius:50%;
+  box-shadow:0 0 0 0 rgba(0,154,206,.45);
+  animation:wa-ring 1.8s ease-out .6s 2;
+}
+@keyframes wa-ring{to{box-shadow:0 0 0 16px rgba(0,154,206,0);}}
+
+.wa-card{
+  width:min(340px, calc(100vw - 32px));
+  background:#fff; border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  box-shadow:0 24px 60px rgba(12,20,22,.22);
+  transform-origin:bottom right; animation:wa-in .28s ease;
+}
+@keyframes wa-in{from{opacity:0; transform:translateY(8px) scale(.97);}}
+.wa-card-head{
+  display:flex; align-items:center; gap:12px; padding:14px 12px 14px 16px; color:#fff;
+  background:
+    radial-gradient(120% 140% at 90% 0%, rgba(0,154,206,.35) 0%, rgba(0,154,206,0) 60%),
+    linear-gradient(125deg, #021820 0%, #05394b 60%, #0a5a76 100%);
+}
+.wa-avatar{
+  position:relative; flex:none; width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center;
+}
+/* a logo.svg fehér és saját kört rajzol, ezért nem kap külön keretet */
+.wa-avatar img{width:100%; height:100%; display:block;}
+.wa-avatar::after{
+  content:""; position:absolute; right:0; bottom:1px; width:11px; height:11px; border-radius:50%;
+  background:#25d366; border:2px solid #05394b;
+}
+.wa-card-title{min-width:0;}
+.wa-card-title strong{display:block; font-size:15px; font-weight:600; line-height:1.3;}
+.wa-card-title span{display:block; font-size:12.5px; color:rgba(255,255,255,.8);}
+.wa-close{
+  margin-left:auto; flex:none; width:34px; height:34px; border-radius:50%; border:0; cursor:pointer;
+  background:transparent; color:#fff; display:grid; place-items:center; transition:background .2s ease;
+}
+.wa-close:hover{background:rgba(255,255,255,.12);}
+.wa-close svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round;}
+.wa-card-body{padding:18px 16px; background:var(--bg-soft);}
+.wa-bubble{
+  margin:0; max-width:92%; padding:12px 14px;
+  background:#fff; border-radius:4px 14px 14px 14px;
+  font-size:14.5px; line-height:1.55; color:var(--ink);
+  box-shadow:0 2px 6px rgba(12,20,22,.06);
+}
+.wa-card-foot{padding:14px 16px 16px;}
+.wa-start{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  height:48px; border-radius:999px; background:var(--accent); color:#fff;
+  font-size:15px; font-weight:600; transition:background .25s ease;
+}
+.wa-start:hover{background:#005d7d;}
+.wa-start svg{width:20px; height:20px; fill:currentColor;}
+@media (prefers-reduced-motion: reduce){
+  .wa-widget, .wa-fab, .wa-fab svg{transition:none;}
+  .wa-card{animation:none;}
+  .wa-widget.is-ready .wa-fab::after{animation:none;}
 }
