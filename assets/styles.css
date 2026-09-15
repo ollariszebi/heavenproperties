@@ -843,7 +843,8 @@
   .trend-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:36px var(--gap);
   }
-  .trend-card{background:#fff; cursor:pointer;}
+  .trend-card{display:block; background:#fff; cursor:pointer; color:inherit; text-decoration:none;}
+  .trend-card:focus-visible{outline:2px solid var(--accent); outline-offset:4px; border-radius:10px;}
   .trend-thumb{
     position:relative; aspect-ratio:6/7; border-radius:6px; margin-bottom:12px; overflow:hidden;
     outline:1px solid transparent; outline-offset:-1px;

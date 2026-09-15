@@ -342,8 +342,10 @@
   ];
   const trendGrid = document.getElementById('trendGrid');
   if (trendGrid) trend.forEach(t=>{
-    const card = document.createElement('div');
+    // a kártya az ingatlan saját oldalára visz (egyelőre a demó listing)
+    const card = document.createElement('a');
     card.className = 'trend-card';
+    card.href = t.href || '/listing.html';
     card.innerHTML = `
       <div class="trend-thumb swatch" style="background-image:url('/images/trending-${t.img}.jpg')">
         ${t.badge ? `<div class="badge">${t.badge}</div>` : ''}
