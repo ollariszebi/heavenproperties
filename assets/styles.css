@@ -3494,6 +3494,9 @@ body.lb-open{overflow:hidden;}
 
 @media(max-width:1000px){
   .has-action-bar .action-bar{display:flex;}
+  /* az alsó sáv végig ott van (Message / Call), a kártyán ugyanez a két gomb
+     csak ismétlés volna */
+  .has-action-bar .agent-actions{display:none;}
   /* a sáv kitakarná a footer alját – a sötét háttér nyúljon alá */
   .has-action-bar footer.site-footer{
     padding-bottom:calc(74px + env(safe-area-inset-bottom, 0px));
